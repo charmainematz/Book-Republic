@@ -17,7 +17,7 @@ $this->title = 'Book Republic';
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#edit" data-toggle="tab">Edit Profile</a>
+                                <li class="active"><a href="#edit" data-toggle="tab">Edit Info</a>
                                 </li>
                                  
                                 <li><a href="#changepassword" data-toggle="tab">Change Password</a>
@@ -54,12 +54,11 @@ $this->title = 'Book Republic';
                                    
                                   
                                   
-                                        
                                         <?php $form = ActiveForm::begin(); ?>
-                                        </br></br>
-                                        <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+                                     
+                                        
                                         <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-                                        <?= $form->field($model, 'status')->textInput() ?>
+                                        <?= $form->field($model, 'status')->textInput(['disabled'=>true]) ?>
                                         <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
                                         <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
                                         <?= $form->field($model, 'location')->textInput(['maxlength' => true]) ?>
@@ -71,7 +70,7 @@ $this->title = 'Book Republic';
 
                                         <?php ActiveForm::end(); ?>
                                         
-                                 
+                                       
                                 </div>
                                                                 
                                 <div class="tab-pane fade" id="changepassword">

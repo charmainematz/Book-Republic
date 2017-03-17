@@ -12,10 +12,10 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
-    //public $last_name;
-    //public $first_name;
+    public $last_name;
+    public $first_name;
     //public $location;
-    //public $role;
+    public $role;
     //public $picture;
 
 
@@ -25,10 +25,10 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-           // ['first_name', 'trim'],
-           // ['first_name', 'required','message'=>'You must enter your name.'],
-           // ['last_name', 'trim'],
-           // ['last_name', 'required'],
+            ['first_name', 'trim'],
+            ['first_name', 'required','message'=>'You must enter your name.'],
+            ['last_name', 'trim'],
+            ['last_name', 'required'],
             ['username', 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
@@ -59,8 +59,9 @@ class SignupForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
-       // $user->first_name = $this->first_name;
-        //$user->last_name = $this->last_name;
+        $user->first_name = $this->first_name;
+        $user->last_name = $this->last_name;
+        $user->role="bookworm";
         $user->setPassword($this->password);
         $user->generateAuthKey();
         

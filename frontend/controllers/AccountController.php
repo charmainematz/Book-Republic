@@ -64,10 +64,10 @@ class AccountController extends Controller
         $this->layout= 'bookworm';
          $model = $this->findModel($id);
 
-        return $this->redirect(['index', 'id' => $model->id]);
-        //return $this->render('index', [
-         //       'model' => $model,
-        //]);
+        //return $this->redirect(['index', 'id' => $model->id]);
+        return $this->render('index', [
+                'model' => $model,
+        ]);
     }
         
        

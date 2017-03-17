@@ -66,7 +66,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: black" >
             <div class="navbar-header navbar-brand" >
                  
-               <a href="<?= Url::toRoute(['bookshelf/index'])?>"><img src="../images/banner.png" class=" pull-left" /> </a>
+               <a href="<?= Url::toRoute(['bookshelf/index','id'=>$user->id])?>"><img src="../images/banner.png" class=" pull-left" /> </a>
           
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -254,11 +254,11 @@ $user=User::findIdentity(Yii::$app->user->getId());
                      
                         <li>
                      
-                            <a href="<?= Url::toRoute(['admin/index'])?>"><i class="fa fa-shield fa-fw"></i> Admin Panel</a>
+                            <a href="<?= Url::toRoute(['admin/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-shield fa-fw"></i> Admin Panel</a>
 
                       </li>
                         <li>
-                            <a href="<?= Url::toRoute(['bookshelf/index'])?>"><i class="fa fa-book fa-fw"></i> My Bookshelf</a>
+                            <a href="<?= Url::toRoute(['bookshelf/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-book fa-fw"></i> My Bookshelf</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> Friends<span class="fa arrow"></span></a>

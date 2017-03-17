@@ -11,8 +11,10 @@ use yii\bootstrap\Modal;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
-
+use common\models\User;
 AppAsset::register($this);
+
+$user=User::findIdentity(Yii::$app->user->getId());
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -50,7 +52,7 @@ AppAsset::register($this);
     } else {
         $menuItems = [
         
-        ['label' => 'My Bookshelf', 'url' => ['/bookshelf/index']],
+        ['label' => 'My Bookshelf', 'url' => ['/bookshelf/index','id'=>$user->id]],
         ];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
