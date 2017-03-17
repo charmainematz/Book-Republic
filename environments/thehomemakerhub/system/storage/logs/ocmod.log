@@ -1,0 +1,56 @@
+2017-02-20 4:37:06 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Simplica Theme
+
+FILE: catalog/controller/extension/module/carousel.php
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/owl-carousel/owl.carousel.css');
+LINE: 8
+
+FILE: catalog/controller/extension/module/banner.php
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/owl-carousel/owl.carousel.css');
+LINE: 8
+
+FILE: catalog/controller/extension/module/slideshow.php
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/owl-carousel/owl.carousel.css');
+LINE: 8
+
+FILE: catalog/view/theme/default/template/common/footer.tpl
+CODE: <p class="pull-left"><?php echo $powered; ?></p>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/view/theme/mytheme/template/common/footer.tpl
+CODE: <p class="pull-left"><?php echo $powered; ?></p>
+NOT FOUND - OPERATIONS ABORTED!
+----------------------------------------------------------------

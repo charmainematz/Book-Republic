@@ -1,0 +1,2 @@
+2017-02-19 8:51:32 - PHP Notice:  Error: Could not load template /var/www/html/thehomemakerhub/catalog/view/theme/default/template/common/column_left.tpl! in /var/www/html/thehomemakerhub/system/library/template/php.php on line 23
+2017-02-19 11:25:58 - PHP Notice:  Use of undefined constant hey - assumed 'hey' in /var/www/html/thehomemakerhub/catalog/view/theme/mytheme/template/common/footer.tpl on line 42
