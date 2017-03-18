@@ -83,21 +83,27 @@ class BookshelfController extends Controller
         $user= $this->findUser($id);
 
         if ($model->load(Yii::$app->request->post())){
-            echo $model->book_number;
-
+           
             //get instance of the uplaoded file
-          //  $imageName=$model->book_number;
-            //$model->file=UploadedFile::getInstance($model,'file');  
-            //$model->file->saveAs('uploads/'.$imageName.".".$model->file->extension);
+            $rand1=rand(0,9999);
+            $rand2=rand(0,9999);
+            $model->file=UploadedFile::getInstance($model,'file');  
+            
 
             //save the path in the db column
-            //$model->cover_photo="uploads/".$user->username.".".$imageName.".".$model->file->extension;
+            $model->cover_photo='uploads/'.$user->username.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension;
          
-         //   $model->owner = $user->username;
+            $model->owner = $user->username;
             
-            if($model->save()){
-                return $this->redirect(['view', 'id' => $model->book_number]);
+            
+            if($model->save())
+            
+            {    $model->file->saveAs('uploads/'.$user->username.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension);
+
             }
+              return $this->redirect(['view', 'id' => $model->book_number]);
+          
+            
         } else {
             return $this->renderAjax('addbook', [ 
                 'model' => $model,

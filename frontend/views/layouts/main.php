@@ -39,35 +39,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/bookshelf/index']],
-       
-   //     ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
-     
-        $menuItems[] = ['label' => 'Register', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-
-    } else {
-        $menuItems = [
-        
-        ['label' => 'My Bookshelf', 'url' => ['/bookshelf/index','id'=>$user->id]],
-        ];
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
+    
     NavBar::end();
     ?>
 

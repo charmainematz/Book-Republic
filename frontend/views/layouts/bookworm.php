@@ -220,7 +220,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
                 
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                     <span> <?= Html::button('',['value'=>Url::toRoute(['bookshelf/editprofile']),'class'=>'btn-link  glyphicon glyphicon-pencil pull-right', 'id'=>'editprofile']) ?>
+                     <span> <?= Html::button('',['value'=>Url::toRoute(['account/changeprofilepic']),'class'=>'btn-link  glyphicon glyphicon-pencil pull-right', 'id'=>'editprofile','title'=>"Update your profile picture"]) ?>
                          
                              </span>
                         <div id="profile">

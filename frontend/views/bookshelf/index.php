@@ -28,10 +28,10 @@ $user=User::findIdentity(Yii::$app->user->getId());
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#mybookshelf" data-toggle="tab">My Books</a>
+                                <li class="active"><a href="#mybookshelf" data-toggle="tab">My Bookshelf</a>
                                 </li>
                                  
-                                <li><a href="#profile" data-toggle="tab">Borrow Requests</a>
+                                <li><a href="#borrowrequest" data-toggle="tab">Borrow Requests</a>
                                 </li>
                                 <li><a href="#messages" data-toggle="tab">Swap Requests</a>
                                 </li>
@@ -61,14 +61,24 @@ $user=User::findIdentity(Yii::$app->user->getId());
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade in active" id="mybookshelf">
+                                
+                                <div class="tab-pane fade in active" id="mybookshelf" >
                                     
-                                       <?= Html::button('',['value'=>Url::to(['addbook','id'=>$user->id]),'class'=>'btn-link  glyphicon glyphicon-plus pull-right', 'id'=>'createbook']) ?>
+                                       <?= Html::button('',['value'=>Url::to(['addbook','id'=>$user->id]),'class'=>'btn-link  glyphicon glyphicon-plus pull-right', 'id'=>'createbook',"title"=>'Add Book']) ?>    
+                              
+                                         <div class="col-12">
+                                            <div class="panel panel-default" style="margin-top: 10px;">
+                                                <div class="panel-heading">
+                                                   
+                                                </div>
+                                            <div class="panel-body">
+                                                
+                                            </div>
+                                            </div>
 
-                                    
                                 </div>
-
-                                <div class="tab-pane fade" id="profile">
+                                </div>
+                                <div class="tab-pane fade" id="borrowrequest">
                                     <h4>Profile Tab</h4>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                 </div>

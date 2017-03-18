@@ -36,29 +36,25 @@ $this->title = 'Book Republic';
                     ?>
              </div>
 
-            <div class="col-xs-6 col-lg-4">
-                 <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-                  
-
+            <div class="col-xs-6 col-lg-4 panel-body ">
                    
-
-             
+                    <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>  
+                    
                     <?= $form->field($model, 'username')->textInput(['autofocus' => true,'placeholder'=>'Username','label'=>false]) ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>
+                    
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                       
+                    <h6> Forgot Password? <?= Html::a('Reset', ['site/request-password-reset']) ?></h6>
+                    
                    
-                    <div class="form-group">
-                        <?= Html::submitButton('Login', ['class' => 'btn-primary-outline btn-block', 'name' => 'login-button']) ?>
-                    </div>
-                     <div style="color:#999;margin:1em 0">
-                        <h6> Forgot Password? <?= Html::a('Reset', ['site/request-password-reset']) ?>.
-                        </h6>
-                    </div>
-                    <?php ActiveForm::end(); ?>
-                  <h5>New to Book Republic? 
-
-                      <?= Html::button('Register',['value'=>Url::to(['signup']),'class'=>'btn-link', 'id'=>'Modal_register']) ?>
-                 </h5>
+                    <?= Html::submitButton('Login', ['class' => 'btn btn-outline btn-primary', 'name' => 'login-button']) ?>
+                    
+                  
+                    <?= Html::button('Register',['value'=>Url::to(['signup']),'class'=>'btn btn-outline btn-primary', 'id'=>'Modal_register']) ?>
+                  
+                    
+                <?php ActiveForm::end(); ?>
             </div>
 
         <div class="row">
