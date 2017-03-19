@@ -45,12 +45,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
     <!-- Custom Fonts -->
     <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+   
 
 </head>
 <body>
@@ -220,14 +215,16 @@ $user=User::findIdentity(Yii::$app->user->getId());
                 
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                     <span> <?= Html::button('',['value'=>Url::toRoute(['account/changeprofilepic']),'class'=>'btn-link  glyphicon glyphicon-pencil pull-right', 'id'=>'editprofile','title'=>"Update your profile picture"]) ?>
+                        <span> 
+
+                            <a title="Update your profile picture" href="<?= Url::toRoute(['account/changeprofilepic','id' => Yii::$app->user->getId()])?>"><i class="glyphicon glyphicon-pencil pull-right"></i></a>    
                          
-                             </span>
+                        </span>
                         <div id="profile">
                          
                                
                               <figure class="profile-userpic text-center">
-                                <img src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" class="img-responsive" alt="Profile Picture">
+                                <img src="<?php echo $user->picture ?>" class="img-responsive" alt="Profile Picture">
                                 
                               </figure>
 
@@ -257,8 +254,8 @@ $user=User::findIdentity(Yii::$app->user->getId());
                             <a href="<?= Url::toRoute(['admin/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-shield fa-fw"></i> Admin Panel</a>
 
                       </li>
-                        <li>
-                            <a href="<?= Url::toRoute(['bookshelf/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-book fa-fw"></i> My Bookshelf</a>
+                        <li class="active">
+                            <a href="<?= Url::toRoute(['bookshelf/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-book fa-fw active"></i> My Bookshelf</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> Friends<span class="fa arrow"></span></a>

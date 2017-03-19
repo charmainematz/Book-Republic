@@ -27,6 +27,7 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    public $file;
 
 
     /**
@@ -55,12 +56,46 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['file'], 'file'],
+            [['picture'], 'string'],
+            [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [['auth_key'], 'string', 'max' => 32],
+            [['first_name', 'last_name', 'role', 'location'], 'string', 'max' => 50],
+            [['bio'], 'string', 'max' => 140],
+            [['email'], 'unique'],
+            [['password_reset_token'], 'unique'],
+            [['username'], 'unique'],
         ];
+         
     }
 
     /**
      * @inheritdoc
      */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Username',
+            'auth_key' => 'Auth Key',
+            'password_hash' => 'Password Hash',
+            'password_reset_token' => 'Password Reset Token',
+            'email' => 'Email',
+            'status' => 'Status',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'first_name' => 'First Name',
+            'last_name' => 'Last Name',
+            'role' => 'Role',
+            'location' => 'Location',
+            'picture' => 'Picture',
+            'file' => 'Profile picture',
+            'bio' => 'About Me',
+        ];
+    }
+
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
@@ -202,6 +237,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBooks()
+    {
+        return $this->hasMany(Books::className(), ['owner' => 'username']);
     }
 
 }

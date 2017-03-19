@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models;
+namespace frontend\models;
 
 use Yii;
 
@@ -42,7 +42,6 @@ class User extends \yii\db\ActiveRecord
         return [
             [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
-            [['file'], 'file'],
             [['picture'], 'string'],
             [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
@@ -72,9 +71,7 @@ class User extends \yii\db\ActiveRecord
             'last_name' => 'Last Name',
             'role' => 'Role',
             'location' => 'Location',
-
             'picture' => 'Picture',
-            'file' => 'Profile picture',
         ];
     }
 

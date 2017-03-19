@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models;
+namespace common\models;
 
 use Yii;
 
@@ -72,7 +72,6 @@ class User extends \yii\db\ActiveRecord
             'last_name' => 'Last Name',
             'role' => 'Role',
             'location' => 'Location',
-
             'picture' => 'Picture',
             'file' => 'Profile picture',
         ];

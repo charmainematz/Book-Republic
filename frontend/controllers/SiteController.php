@@ -12,6 +12,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use common\models\User;
 
 
 
@@ -74,23 +75,21 @@ class SiteController extends Controller
         $model2 = new SignupForm();
          
 
-
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
              $this->layout='bookworm';
-            return $this->render('/bookshelf/index');
-             //$this->redirect(array('myothercontroller/myotheraction'));
+            return $this->render('/bookshelf/index',["id"=> Yii::$app->user->getId()]);      
+             
         } 
-      else if ($model2->load(Yii::$app->request->post())) {
+        if ($model2->load(Yii::$app->request->post())) {
             if ($user = $model2->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
 
-                     return $this->render('/bookshelf/index', [
-                        'model' => $model,
-                        'model2' => $model2,
-                    ]);
+                     return $this->render('/bookshelf/index',["id"=> Yii::$app->user->getId()]);
                 }
             }
         }
+        
+
 
       else  return $this->render('index', [
              'model' => $model,
@@ -237,4 +236,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+
 }

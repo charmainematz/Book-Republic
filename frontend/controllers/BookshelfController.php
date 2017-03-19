@@ -75,6 +75,9 @@ class BookshelfController extends Controller
       // return $this->render('index');
     }
 
+   
+
+
 
     public function actionAddbook($id)
     {
@@ -113,20 +116,7 @@ class BookshelfController extends Controller
         
     }
 
- 
-   public function actionEditprofile($id)
-    {
-        $this->layout ='bookworm';
-        $model = $this->findUser($id);
- 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->username]);
-        } else {
-            return $this->render('editprofile', [
-                'model' => $model,
-            ]);
-        }
-    }
+
 
     protected function findUser($id)
     {

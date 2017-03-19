@@ -2,13 +2,24 @@
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+use common\models\User;
+
 $this->title = 'Book Republic';
+
+$user=User::findIdentity(Yii::$app->user->getId());
 ?>
 
         <div id="page-wrapper">
            
-             
+             <?php
+                Modal::begin([
+                        'header'=>'<h4>Add Book</h4>',
+                        'id' => 'modal2',
+                        'size' => 'modal-lg',
+                    ]);
+                echo "<div id = 'modalContent2'></div>";
+                Modal::end();
+                ?>
             <!-- /.row -->
             <div class="row">
                   <div class="col-lg-12">
@@ -17,14 +28,15 @@ $this->title = 'Book Republic';
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#edit" data-toggle="tab">Profile</a>
+                                <li class="active"><a href="#mybookshelf" data-toggle="tab">My Bookshelf</a>
                                 </li>
                                  
-                                <li><a href="#changepassword" data-toggle="tab">Change Password</a>
+                                <li><a href="#borrowrequest" data-toggle="tab">Borrow Requests</a>
                                 </li>
-                                <li><a href="#deactivateaccount" data-toggle="tab">Deactivate Account</a>
+                                <li><a href="#messages" data-toggle="tab">Swap Requests</a>
                                 </li>
-                                
+                                <li><a href="#settings" data-toggle="tab">Wish List</a>
+                                </li>
                                
                                 <li class="sidebar-search pull-right col-sm-4">
 
@@ -50,34 +62,31 @@ $this->title = 'Book Republic';
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 
-                                <div class="tab-pane fade in active" id="edit">
-      
-                                 
-                                   <?php $form = ActiveForm::begin(['action' =>['account/update','id'=>$model->id], 'method' => 'post']); ?>
+                                <div class="tab-pane fade in active" id="mybookshelf" >
                                     
-                                    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-                                    <?= $form->field($model, 'status')->textInput(['disabled'=>true]) ?>
-                                    <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
-                                    <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
-                                    <?= $form->field($model, 'location')->textInput(['maxlength' => true]) ?>
-                                     <?= $form->field($model, 'bio')->textInput(['maxlength' => true]) ?>
-                                 
-                                    <div class="form-group">
-                                        <?= Html::submitButton(
-                                        $model->isNewRecord ? 'Create' : 'Update', 
-                                        ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-                                    </div>
+                                       <?= Html::button('',['value'=>Url::to(['addbook','id'=>$user->id]),'class'=>'btn-link  glyphicon glyphicon-plus pull-right', 'id'=>'createbook',"title"=>'Add Book']) ?>    
+                              
+                                         <div class="col-12">
+                                            <div class="panel panel-default" style="margin-top: 10px;">
+                                                <div class="panel-heading">
+                                                   
+                                                </div>
+                                            <div class="panel-body">
+                                                
+                                            </div>
+                                            </div>
 
-                                    <?php ActiveForm::end(); ?>
-                                        
-                                       
                                 </div>
-                                                                
-                                <div class="tab-pane fade" id="changepassword">
+                                </div>
+                                <div class="tab-pane fade" id="borrowrequest">
+                                    <h4>Profile Tab</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                </div>
+                                <div class="tab-pane fade" id="messages">
                                     <h4>Messages Tab</h4>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                 </div>
-                                <div class="tab-pane fade" id="deactivateaccount">
+                                <div class="tab-pane fade" id="settings">
                                     <h4>Settings Tab</h4>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                 </div>

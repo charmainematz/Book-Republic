@@ -8,14 +8,13 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\Books;
 use common\models\User;
-use common\models\BooksSearch;
+use common\models\Account;
 use common\models\UserSearch;
-
+use yii\web\UploadedFile;
 
 /**
- * Site controller
+ * Account controller
  */
 class AccountController extends Controller
 {
@@ -28,7 +27,7 @@ class AccountController extends Controller
                 'only' => ['index'],
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index','update','view'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -61,16 +60,73 @@ class AccountController extends Controller
      */
     public function actionIndex($id)
     {
+        $model = $this->findModel($id);
         $this->layout= 'bookworm';
-         $model = $this->findModel($id);
+         
 
         //return $this->redirect(['index', 'id' => $model->id]);
         return $this->render('index', [
                 'model' => $model,
         ]);
     }
+     public function actionChangeprofilepic($id)
+    {
+          $model = $this->findModel($id);
         
+          if ($model->load(Yii::$app->request->post())){
+           
+            //get instance of the uplaoded file
+            $model->file=UploadedFile::getInstance($model,'file');  
+            
+
+            //save the path in the db column
+            $model->picture='uploads/'.$model->username.'_profilepicture'.'.'.$model->file->extension;
+
+            
+            if($model->save())
+            
+            {   $model->file->saveAs('uploads/'.$model->username.'_profilepicture'.'.'.$model->file->extension);
+                $this->layout = 'bookworm';
+                 return $this->render('index', [
+                'model' => $this->findModel($id),
+                ]);
+          
+
+            }
+             
+            
+          }
+        
+
+         else{   return $this->renderAjax('changeprofilepic', [
+                    'model' => $this->findModel($id),
+        ]);
+        }
+    }
+        
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+          $this->layout= 'bookworm';
+         
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+             return $this->render('index', [
+                'model' => $model,
+        ]);
+
        
+        }
+    }
+
+     public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+
+    
     
     protected function findModel($id)
     {
@@ -80,5 +136,6 @@ class AccountController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 
 }
