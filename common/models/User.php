@@ -27,7 +27,10 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
-    public $file;
+    public $file; 
+   // public $currentpassword;
+   // public $newpassword1;
+   // public $newpassword2;
 
 
     /**
@@ -67,6 +70,12 @@ class User extends ActiveRecord implements IdentityInterface
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
             [['username'], 'unique'],
+          //  [['newpassword1,newpassword2,currentpassword'], 'required'],
+         //   [['newpassword1'], 'string', 'min' => 6],
+         //   ['newpassword2','compare','compareAttribute'=>'newpassword1','message' => 'Passwords must match.' ],
+
+              
+                
         ];
          
     }
@@ -92,7 +101,10 @@ class User extends ActiveRecord implements IdentityInterface
             'location' => 'Location',
             'picture' => 'Picture',
             'file' => 'Profile picture',
-            'bio' => 'About Me',
+            'bio' => 'Bio',
+          //  'currentpassword' => 'Current password',
+         //   'newpassword1' => 'New password',
+         //   'newpassword2' => 'Verify password',
         ];
     }
 
@@ -123,11 +135,9 @@ class User extends ActiveRecord implements IdentityInterface
         $user = User::find()->where(['id' => $id])->one();
         $firstname= $user->first_name;
         $lastname= $user->last_name;
-        return $firstname." ".$lastname;
-
-        
+        return $firstname." ".$lastname;      
     }
-     public function getRole($id){
+    public function getRole($id){
         $user = User::find()->where(['id' => $id])->one();
         $role= $user->role;
        

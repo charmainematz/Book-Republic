@@ -68,6 +68,9 @@ class AdminController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider2 = $searchModel2->search(Yii::$app->request->queryParams);
 
+        $dataProvider->pagination->pageSize=8;
+        $dataProvider2->pagination->pageSize=8;
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

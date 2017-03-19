@@ -27,7 +27,7 @@ class AccountController extends Controller
                 'only' => ['index'],
                 'rules' => [
                     [
-                        'actions' => ['index','update','view'],
+                        'actions' => ['index','update','view','changepassword'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -116,6 +116,7 @@ class AccountController extends Controller
 
        
         }
+
     }
 
      public function actionView($id)
@@ -123,6 +124,19 @@ class AccountController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+
+    public function actionChangepassword($id){
+        $model = $this->findModel($id);
+        $this->layout= 'bookworm';
+         
+
+        //return $this->redirect(['index', 'id' => $model->id]);
+        return $this->render('index', [
+                'model' => $model,
+        ]);
+
+        
     }
 
 

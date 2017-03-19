@@ -54,18 +54,20 @@ $this->title = 'Book Republic';
       
                                  
                                    <?php $form = ActiveForm::begin(['action' =>['account/update','id'=>$model->id], 'method' => 'post']); ?>
+                                    <?= $form->field($model, 'bio')->textInput(['maxlength' => true]) ?>
                                     
-                                    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-                                    <?= $form->field($model, 'status')->textInput(['disabled'=>true]) ?>
                                     <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
                                     <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
                                     <?= $form->field($model, 'location')->textInput(['maxlength' => true]) ?>
-                                     <?= $form->field($model, 'bio')->textInput(['maxlength' => true]) ?>
+                                   
+                                   
+                                     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+                                      <?= $form->field($model, 'status')->textInput(['disabled'=>true]) ?>
                                  
                                     <div class="form-group">
                                         <?= Html::submitButton(
-                                        $model->isNewRecord ? 'Create' : 'Update', 
-                                        ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                                        $model->isNewRecord ? 'Create' : 'Save changes', 
+                                        ['class' =>  'btn btn-outline btn-primary']) ?>
                                     </div>
 
                                     <?php ActiveForm::end(); ?>
@@ -74,14 +76,31 @@ $this->title = 'Book Republic';
                                 </div>
                                                                 
                                 <div class="tab-pane fade" id="changepassword">
-                                    <h4>Messages Tab</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                     
                                 </div>
                                 <div class="tab-pane fade" id="deactivateaccount">
                                     <h4>Settings Tab</h4>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                 </div>
                             </div>
+                             <?php
+                                $script = <<< JS
+                                $(function() {
+                                //save the latest tab (http://stackoverflow.com/a/18845441)
+                                $('a[data-toggle="tab"]').on('click', function (e) {
+                                    localStorage.setItem('lastTab', $(e.target).attr('href'));
+                                });
+
+                                //go to the latest tab, if it exists:
+                                var lastTab = localStorage.getItem('lastTab');
+
+                            if (lastTab) {
+                                $('a[href="'+lastTab+'"]').click();
+                            }
+                             }); 
+JS;
+                        $this->registerJs($script, yii\web\View::POS_END);
+                        ?>
                         </div>
                         <!-- /.panel-body -->
                     </div>
