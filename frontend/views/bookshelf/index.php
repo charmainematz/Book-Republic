@@ -9,7 +9,7 @@ $this->title = 'Book Republic';
 $user=User::findIdentity(Yii::$app->user->getId());
 ?>
 
-    <div id="page-wrapper">       
+    <div id="page-wrapper" class="bookshelf">       
         <!-- /.row -->
         <div class="row">
             <div class="col-6">
@@ -56,19 +56,20 @@ $user=User::findIdentity(Yii::$app->user->getId());
                                         <div class="panel-heading">        
                                         </div>
                                     <div class="panel-body">
-                            
+                                 
                                         <?php
-                                           foreach($books as $book) {
-                                                    echo "Title = ". $book->title."</br>";
-                                                    echo "Author = ".$book->author."</br>";
-                                                    echo "Genre = ". $book->genre."</br>";
-                                                    echo "Description = ".$book->description."</br>";
-                                                     echo "</br>";
-                                                     
-                                            }
-                                                  
-                                        ?>
-                                                                                
+                                           foreach($books as $book) {?>
+                                            <div class="row">
+                                               <div class="col-xs-12 col-md-3">
+                                                    <a href="#" class="thumbnail">
+                                                    <img src="<?php echo $book->cover_photo?>">
+                                                                               
+
+                                                    </a>
+                                                </div>
+                                            </div> 
+                                        <?php } ?>
+                                                                                                 
                                     </div>
                                     </div>
                                 </div>

@@ -12,6 +12,7 @@ use common\models\Books;
 use common\models\User;
 use common\models\BooksSearch;
 use common\models\UserSearch;
+use yii\web\UploadedFile;
 
 
 /**
@@ -126,11 +127,24 @@ class AdminController extends Controller
     public function actionUpdatebook($id)
     {
         $model = $this->findModel2($id);
+
         $this->layout= 'bookworm';
          
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-              return $this->refresh();
+        if ($model->load(Yii::$app->request->post())){
 
+            $rand1=rand(0,9999);
+            $rand2=rand(0,9999);
+            $model->file=UploadedFile::getInstance($model,'file');
+
+            $model->cover_photo='uploads/'.$model->owner.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension;
+         
+
+             if($model->save())
+            
+            {    $model->file->saveAs('uploads/'.$model->owner.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension);
+
+            }
+              return $this->refresh(); 
        
         }
         else{

@@ -31,9 +31,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'review')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'cover_photo')->textInput() ?>
+   
 
     <?= $form->field($model, 'owner')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'file')->fileInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save changes', ['class' => 'btn btn-outline btn-primary']) ?>

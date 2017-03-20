@@ -119,7 +119,7 @@ class BookshelfController extends Controller
             {    $model->file->saveAs('uploads/'.$user->username.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension);
 
             }
-              return $this->redirect(['view', 'id' => $model->book_number]); 
+              return $this->refresh(); 
           
             
         } else {
