@@ -159,10 +159,7 @@ class SiteController extends Controller
             ]);
         }
     }
-     public function actionMybookshelf()
-    {
-        return $this->render('/bookshelf/site');
-    }
+     
     /**
      * Displays about page.
      *

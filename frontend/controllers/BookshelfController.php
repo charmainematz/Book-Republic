@@ -26,10 +26,10 @@ class BookshelfController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','admin','addbook','logout'],
+                'only' => ['index','admin','addbook','logout','mybookshelf'],
                 'rules' => [
                     [
-                        'actions' => ['index','addbook','logout'],
+                        'actions' => ['index','addbook','logout','mybookshelf'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -66,13 +66,28 @@ class BookshelfController extends Controller
     {
         $this->layout='bookworm';
         $model = $this->findUser($id);
+        $books = $this->findBooks($id);
 
         
         return $this->render('index', [
                 'model' => $model,
+                'books' => $books,
         ]);
         
       
+    }
+     public function actionMybookshelf($id)
+    {
+       
+       
+        $books = $this->findBooks($id);
+        $this->layout='bookworm';
+        return $this->render('mybookshelf', [
+                'books' => $books,
+        ]);
+        
+        
+              
     }
 
    
@@ -104,7 +119,7 @@ class BookshelfController extends Controller
             {    $model->file->saveAs('uploads/'.$user->username.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension);
 
             }
-              return $this->redirect(['view', 'id' => $model->book_number]);
+              return $this->redirect(['view', 'id' => $model->book_number]); 
           
             
         } else {
@@ -115,10 +130,18 @@ class BookshelfController extends Controller
         }
         
     }
+     public  function findBooks($id)
+    {
+        $user = $this->findUser($id);
+        $books = Books::find()
+                ->where(['owner' => $user->username])
+                ->all();
+
+        return $books;
+    }
 
 
-
-    protected function findUser($id)
+    public static function findUser($id)
     {
         if (($model = User::findOne($id)) !== null) {
             return $model;
@@ -126,6 +149,9 @@ class BookshelfController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+
 
    
 }

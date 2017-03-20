@@ -56,7 +56,19 @@ $user=User::findIdentity(Yii::$app->user->getId());
                                         <div class="panel-heading">        
                                         </div>
                                     <div class="panel-body">
-                                     <?= Html::button('',['value'=>Url::to(['viewallbooks','id'=>$user->id]),'class'=>'btn-link  glyphicon glyphicon-eye-open ', 'id'=>'createbook',"title"=>'View all books']) ?>     
+                                       
+                                        <?php
+                                           foreach($books as $book) {
+                                                    echo "Title = ". $book->title."</br>";
+                                                    echo "Author = ".$book->author."</br>";
+                                                    echo "Genre = ". $book->genre."</br>";
+                                                    echo "Description = ".$book->description."</br>";
+                                                     echo "</br>";
+                                                     
+                                            }
+                                                  
+                                        ?>
+                                                                                
                                     </div>
                                     </div>
                                 </div>

@@ -244,7 +244,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getBooks()
+    public  function getBooks()
     {
         return $this->hasMany(Books::className(), ['owner' => 'username']);
     }
