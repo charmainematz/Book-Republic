@@ -1,21 +1,38 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\User */
-
-$this->title = 'Update User: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+/* @var $model backend\models\Books */
+/* @var $form yii\widgets\ActiveForm */
 ?>
-<div class="user-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="books-form">
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    
+    <?php $form = ActiveForm::begin(['action' =>['admin/updatebook','id'=>$model->id], 'method' => 'post']); ?>
+
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'author')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'genre')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'condition')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'rating')->textInput() ?>
+
+    <?= $form->field($model, 'review')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'cover_photo')->textInput() ?>
+
+    <?= $form->field($model, 'owner')->textInput(['maxlength' => true]) ?>
+
+    <?= Html::submitButton('Save changes',['class' => 'btn btn-outline btn-primary']) ?>
+
+    <?php ActiveForm::end(); ?>
 
 </div>

@@ -123,6 +123,40 @@ class AdminController extends Controller
             ]);
         }
     }
+    public function actionUpdatebook($id)
+    {
+        $model = $this->findModel2($id);
+        $this->layout= 'bookworm';
+         
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+              return $this->refresh();
+
+       
+        }
+        else{
+              return $this->render('updatebook', [
+                'model' => $model,
+            ]);
+        }
+
+    }
+    public function actionUpdateuser($id)
+    {
+        $model = $this->findModel($id);
+        $this->layout= 'bookworm';
+         
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+              return $this->refresh();
+
+       
+        }
+        else{
+              return $this->render('updateuser', [
+                'model' => $model,
+            ]);
+        }
+
+    }
 
      public function actionViewuser($id)
     {
@@ -138,18 +172,7 @@ class AdminController extends Controller
             'model' => $this->findModel2($id),
         ]);
     }
-     public function actionUpdatebook($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->book_number]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
+   
 
    protected function findModel($id)
     {

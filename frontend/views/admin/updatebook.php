@@ -8,7 +8,12 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="books-form">
+
+<div id="page-wrapper">
+               
+            <!-- /.row -->
+            <div class="row">
+                  <div class="col-lg-12">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -31,9 +36,11 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'owner')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton('Save changes', ['class' => 'btn btn-outline btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
+</div>
+</div>
 </div>

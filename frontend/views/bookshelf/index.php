@@ -56,7 +56,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
                                         <div class="panel-heading">        
                                         </div>
                                     <div class="panel-body">
-                                       
+                            
                                         <?php
                                            foreach($books as $book) {
                                                     echo "Title = ". $book->title."</br>";
