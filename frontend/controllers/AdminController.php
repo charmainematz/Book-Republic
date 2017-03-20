@@ -25,10 +25,10 @@ class AdminController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','admin','managebooks','viewuser','viewbook','updatebook','updateuser'],
+                'only' => ['index','admin','managebooks','viewuser','viewbook','updatebook','updateuser','logout'],
                 'rules' => [
                     [
-                        'actions' => ['index','admin','viewuser','viewbook','updatebook', 'updateuser'],
+                        'actions' => ['index','admin','viewuser','viewbook','updatebook', 'updateuser','logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

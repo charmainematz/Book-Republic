@@ -48,6 +48,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
                         <!-- Tab panes -->
                         <div class="tab-content ">                           
                             <div class="tab-pane fade in active" id="mybookshelf" >
+
                                 
                                 <?= Html::button('',['value'=>Url::to(['addbook','id'=>$user->id]),'class'=>'btn-link  glyphicon glyphicon-plus pull-right', 'id'=>'createbook',"title"=>'Add Book']) ?>                     
                                  <div class="col-6">
@@ -55,6 +56,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
                                         <div class="panel-heading">        
                                         </div>
                                     <div class="panel-body">
+                                     <?= Html::button('',['value'=>Url::to(['viewallbooks','id'=>$user->id]),'class'=>'btn-link  glyphicon glyphicon-eye-open ', 'id'=>'createbook',"title"=>'View all books']) ?>     
                                     </div>
                                     </div>
                                 </div>

@@ -26,10 +26,10 @@ class BookshelfController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','admin','addbook','editprofile','logout'],
+                'only' => ['index','admin','addbook','logout'],
                 'rules' => [
                     [
-                        'actions' => ['index','addbook','editprofile','logout'],
+                        'actions' => ['index','addbook','logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
