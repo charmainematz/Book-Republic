@@ -23,7 +23,7 @@ use yii\helpers\ArrayHelper;
     
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Upload', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton('Upload', ['class' => 'btn btn-outline btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

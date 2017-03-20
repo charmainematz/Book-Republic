@@ -70,32 +70,38 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        //$this->render('index');
-        $model = new LoginForm();
-        $model2 = new SignupForm();
-         
 
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-             $this->layout='bookworm';
+        if (!Yii::$app->user->isGuest) {
+            $this->layout='bookworm';
             return $this->render('/bookshelf/index',["id"=> Yii::$app->user->getId()]);      
-             
-        } 
-        if ($model2->load(Yii::$app->request->post())) {
-            if ($user = $model2->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
 
-                     return $this->render('/bookshelf/index',["id"=> Yii::$app->user->getId()]);
+        }
+
+        else{
+        //$this->render('index');
+            $model = new LoginForm();
+            $model2 = new SignupForm();
+             
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                 $this->layout='bookworm';
+                return $this->render('/bookshelf/index',["id"=> Yii::$app->user->getId()]);      
+                 
+            } 
+            if ($model2->load(Yii::$app->request->post())) {
+                if ($user = $model2->signup()) {
+                    if (Yii::$app->getUser()->login($user)) {
+
+                         return $this->render('/bookshelf/index',["id"=> Yii::$app->user->getId()]);
+                    }
                 }
             }
+            
+            return $this->render('index', [
+                 'model' => $model,
+                'model2' => $model2,
+            ]);
         }
-        
-
-
-      else  return $this->render('index', [
-             'model' => $model,
-            'model2' => $model2,
-        ]);
-
     }
 
     /**

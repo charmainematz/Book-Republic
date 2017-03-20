@@ -51,6 +51,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
        
         <?= Alert::widget() ?>
         <?= $content ?>
+       
     </div>
 </div>
 

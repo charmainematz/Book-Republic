@@ -60,58 +60,55 @@ class AccountController extends Controller
      */
     public function actionIndex($id)
     {
-        $model = $this->findModel($id);
+       
         $this->layout= 'bookworm';
-         
-
-        //return $this->redirect(['index', 'id' => $model->id]);
         return $this->render('index', [
-                'model' => $model,
+                'model' => $this->findModel1($id),
+                'model2' => $this->findModel2($id),
         ]);
     }
      public function actionChangeprofilepic($id)
     {
-          $model = $this->findModel($id);
+           $model = $this->findModel1($id);
         
           if ($model->load(Yii::$app->request->post())){
            
             //get instance of the uplaoded file
             $model->file=UploadedFile::getInstance($model,'file');  
             
-
             //save the path in the db column
             $model->picture='uploads/'.$model->username.'_profilepicture'.'.'.$model->file->extension;
-
             
             if($model->save())
             
             {   $model->file->saveAs('uploads/'.$model->username.'_profilepicture'.'.'.$model->file->extension);
                 $this->layout = 'bookworm';
                  return $this->render('index', [
-                'model' => $this->findModel($id),
+                'model' => $model,
+                'model2'=>$this->findModel2($id),
                 ]);
           
-
             }
              
             
           }
         
-
          else{   return $this->renderAjax('changeprofilepic', [
-                    'model' => $this->findModel($id),
+                    'model' => $model,
         ]);
         }
+        
     }
         
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-          $this->layout= 'bookworm';
+        $model = $this->findModel1($id);
+        $this->layout= 'bookworm';
          
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-             return $this->render('index', [
+              return $this->render('index', [
                 'model' => $model,
+                'model2' => $this->findModel2($id),
         ]);
 
        
@@ -122,29 +119,42 @@ class AccountController extends Controller
      public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel1($id),
         ]);
     }
 
     public function actionChangepassword($id){
-        $model = $this->findModel($id);
-        $this->layout= 'bookworm';
+
+        //$input = new Account; 
+        //$input->load(Yii::$app->request->post();
+
+        //if(vali)
+        //$model2 = $this->findModel2($id);
+
+
+        //$this->layout= 'bookworm';
          
 
         //return $this->redirect(['index', 'id' => $model->id]);
         return $this->render('index', [
-                'model' => $model,
+                'model' => $this->findModel1($id),
+                'model2' => $model2,
         ]);
 
         
     }
-
-
     
-    
-    protected function findModel($id)
+    protected function findModel1($id)
     {
         if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+     protected function findModel2($id)
+    {
+        if (($model = Account::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

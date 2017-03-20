@@ -67,12 +67,12 @@ class BookshelfController extends Controller
         $this->layout='bookworm';
         $model = $this->findUser($id);
 
-        //return $this->redirect(['index', 'id' => $model->id]);
+        
         return $this->render('index', [
                 'model' => $model,
         ]);
         
-      // return $this->render('index');
+      
     }
 
    

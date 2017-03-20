@@ -28,10 +28,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
     public $file; 
-   // public $currentpassword;
-   // public $newpassword1;
-   // public $newpassword2;
-
+   
 
     /**
      * @inheritdoc
@@ -70,9 +67,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
             [['username'], 'unique'],
-          //  [['newpassword1,newpassword2,currentpassword'], 'required'],
-         //   [['newpassword1'], 'string', 'min' => 6],
-         //   ['newpassword2','compare','compareAttribute'=>'newpassword1','message' => 'Passwords must match.' ],
+            
 
               
                 
@@ -100,11 +95,9 @@ class User extends ActiveRecord implements IdentityInterface
             'role' => 'Role',
             'location' => 'Location',
             'picture' => 'Picture',
-            'file' => 'Profile picture',
+            'file' => '',
             'bio' => 'Bio',
-          //  'currentpassword' => 'Current password',
-         //   'newpassword1' => 'New password',
-         //   'newpassword2' => 'Verify password',
+    
         ];
     }
 

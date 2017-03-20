@@ -4,6 +4,6 @@ $(function(){
 			.find('#modalContent2')
 			.load($(this).attr('value'));
 	});
-
+	
 });
 

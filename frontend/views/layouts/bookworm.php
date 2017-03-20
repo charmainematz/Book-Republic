@@ -2,7 +2,6 @@
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\Nav;
@@ -15,24 +14,17 @@ use common\models\User;
 
 BookwormAsset::register($this);
 
-$user=User::findIdentity(Yii::$app->user->getId());
-
-?>
+$user=User::findIdentity(Yii::$app->user->getId());?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-
     <title>Welcome</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -44,19 +36,18 @@ $user=User::findIdentity(Yii::$app->user->getId());
 
     <!-- Custom Fonts -->
     <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-   
-
 </head>
-<body>
 <?php $this->beginBody() ?>
-    
-
-
+    <?php
+        Modal::begin([
+            'id' => 'modal3',
+            'size' => 'modal-sm',
+            'header'=>  "UPLOAD",
+        ]);
+        echo "<div id = 'modalContent3'></div>";
+        Modal::end();
+    ?>
     <div class="wrapper" >    
-
-
-
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: black" >
             <div class="navbar-header navbar-brand" >
@@ -72,8 +63,6 @@ $user=User::findIdentity(Yii::$app->user->getId());
               
             </div>
             <!-- /.navbar-header -->
-            
-
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown" >
                     <a style="color:#9ca9b7;" class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -210,64 +199,43 @@ $user=User::findIdentity(Yii::$app->user->getId());
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
-
-                
+            <div class="navbar-default sidebar" role="navigation">             
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <span> 
-
-                            <a title="Update your profile picture" href="<?= Url::toRoute(['account/changeprofilepic','id' => Yii::$app->user->getId()])?>"><i class="glyphicon glyphicon-pencil pull-right"></i></a>    
-                         
+                            
+                             <?= Html::button('',['value'=>Url::toRoute(['account/changeprofilepic','id'=>Yii::$app->user->getId()]),'class'=>'btn-link  glyphicon glyphicon-pencil pull-right', 'id'=>'changedp',"title"=>'Update your profile picture']) ?>            
                         </span>
                         <div id="profile">
-                         
-                               
-                              <figure class="profile-userpic text-center">
-                                <img src="<?php echo $user->picture ?>" class="img-responsive" alt="Profile Picture">
-                                
-                              </figure>
-
-
-                              <div class="text-center profile-usertitle">
+                            <figure class="profile-userpic text-center">
+                                <img src="<?php echo $user->picture ?>" class="img-responsive" alt="Profile Picture">     
+                            </figure>
+                            <div class="text-center profile-usertitle">
                                 <div class="profile-usertitle-name">
                                  <a href="<?= Url::toRoute(['account/index','id' => Yii::$app->user->getId()])?>">
-                                    <?php
-                                    echo $user->first_name." ".$user->last_name;
-                                    
-                                    ?>
+                                    <?php echo $user->first_name." ".$user->last_name;?>
                                 </a>
                                 </div>
                                 <div class="profile-usertitle-title">
-                                     <?php 
-                                    echo $user->role;
-                                    
-                                    ?>
-
+                                    <?php echo $user->role; ?>
                                 </div>
-                              </div>   
-                             
+                            </div>       
                         </div>
-                     
                         <li>
-                     
                             <a href="<?= Url::toRoute(['admin/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-shield fa-fw"></i> Admin Panel</a>
-
-                      </li>
+                        </li>
                         <li class="active">
                             <a href="<?= Url::toRoute(['bookshelf/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-book fa-fw active"></i> My Bookshelf</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> Friends<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                
+                            <ul class="nav nav-second-level">                  
                                 <li>
                                    <a href="#""><i class="fa fa-caret-right fa-fw"></i> Browse Books</a>
                                 </li>
                                 <li>
                                    <a href="#""><i class="fa fa-caret-right fa-fw"></i> Manage Friends</a>
                                 </li>
-
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -281,16 +249,14 @@ $user=User::findIdentity(Yii::$app->user->getId());
                             <a href="<?= Url::toRoute(['account/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-wrench fa-fw"></i> Account Settings<span class="fa arrow"></span></a>
                            
                             <!-- /.nav-second-level -->
-                        </li>
-                    
-            
+                        </li>         
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        <?= Alert::widget() ?>
+        <?= Alert::widget() ?> 
         <?= $content ?>
     </div>
 
@@ -305,15 +271,10 @@ $user=User::findIdentity(Yii::$app->user->getId());
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
-
-
-
 <?php $this->endBody() ?>
-</body>
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; Book Republc <?= date('Y') ?></p>
-
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>

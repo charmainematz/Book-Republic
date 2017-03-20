@@ -9,18 +9,14 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\bootstrap\Modal;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\AdminAsset;
+use frontend\assets\BookwormAsset;
 use common\widgets\Alert;
-use yii\widgets\Pjax;
+use common\models\User;
 
-use yii\widgets\DetailView;
-use yii\grid\GridView;
+BookwormAsset::register($this);
 
+$user=User::findIdentity(Yii::$app->user->getId());
 
-
-
-
-AdminAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -33,6 +29,7 @@ AdminAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
 
     <title>Welcome</title>
 
@@ -48,12 +45,7 @@ AdminAsset::register($this);
     <!-- Custom Fonts -->
     <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+   
 
 </head>
 <body>
@@ -69,7 +61,7 @@ AdminAsset::register($this);
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: black" >
             <div class="navbar-header navbar-brand" >
                  
-               <a href="<?= Url::toRoute(['bookshelf/index'])?>"><img src="../images/banner.png" class=" pull-left" /> </a>
+               <a href="<?= Url::toRoute(['bookshelf/index','id'=>$user->id])?>"><img src="../images/banner.png" class=" pull-left" /> </a>
           
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -202,10 +194,14 @@ AdminAsset::register($this);
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="<?= Url::toRoute(['account/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="<?= Url::toRoute(['site/logout'])?>"><i class="fa fa-sign-out fa-fw"></i> Logout 
+                                    <?php
+                                    echo $user->username;
+                                    
+                                    ?></a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -219,29 +215,47 @@ AdminAsset::register($this);
                 
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+                        <span> 
 
-                        <li id="profile">
+                            <a title="Update your profile picture" href="<?= Url::toRoute(['account/changeprofilepic','id' => Yii::$app->user->getId()])?>"><i class="glyphicon glyphicon-pencil pull-right"></i></a>    
                          
+                        </span>
+                        <div id="profile">
+                         
+                               
                               <figure class="profile-userpic text-center">
-                                <img src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" class="img-responsive" alt="Profile Picture">
-
+                                <img src="<?php echo $user->picture ?>" class="img-responsive" alt="Profile Picture">
+                                
                               </figure>
 
+
                               <div class="text-center profile-usertitle">
-                                <div class="profile-usertitle-name">Charmaine</div>
-                                <div class="profile-usertitle-title">Administrator</div>
+                                <div class="profile-usertitle-name">
+                                 <a href="<?= Url::toRoute(['account/index','id' => Yii::$app->user->getId()])?>">
+                                    <?php
+                                    echo $user->first_name." ".$user->last_name;
+                                    
+                                    ?>
+                                </a>
+                                </div>
+                                <div class="profile-usertitle-title">
+                                     <?php 
+                                    echo $user->role;
+                                    
+                                    ?>
 
-                              </div>
-
-                        </li>
-                      
+                                </div>
+                              </div>   
+                             
+                        </div>
+                     
                         <li>
                      
-                            <a href="<?= Url::toRoute(['admin/index'])?>"><i class="fa fa-shield fa-fw"></i> Admin Panel</a>
+                            <a href="<?= Url::toRoute(['admin/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-shield fa-fw"></i> Admin Panel</a>
 
                       </li>
-                        <li>
-                            <a href="<?= Url::toRoute(['bookshelf/index'])?>"><i class="fa fa-book fa-fw"></i> My Bookshelf</a>
+                        <li class="active">
+                            <a href="<?= Url::toRoute(['bookshelf/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-book fa-fw active"></i> My Bookshelf</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> Friends<span class="fa arrow"></span></a>
@@ -264,20 +278,8 @@ AdminAsset::register($this);
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Activity Log</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Settings<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                   <a href="#""><i class="fa fa-caret-right fa-fw"></i> Edit Profile</a>
-                                </li>
-                              
-                               <li>
-                                   <a href="#""><i class="fa fa-caret-right fa-fw"></i> Change Password</a>
-                                </li>
-                               
-                                 <li>
-                                   <a href="#""><i class="fa fa-caret-right fa-fw"></i> Deactivate Account</a>
-                                </li>
-                            </ul>
+                            <a href="<?= Url::toRoute(['account/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-wrench fa-fw"></i> Account Settings<span class="fa arrow"></span></a>
+                           
                             <!-- /.nav-second-level -->
                         </li>
                     
@@ -287,10 +289,17 @@ AdminAsset::register($this);
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
-        </nav>
 
+        </nav>
         <?= Alert::widget() ?>
-       
+        <div class="sidebar-nav pull-right">
+        <a class="twitter-timeline" data-width="280" data-height="650"  href="https://twitter.com/PriBethCharm/lists/book-republic">A Twitter List by Book Republic</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+         </div>
+
+         <div class= "col-9">
+        <?= $content ?>
+        </div>
+    </div>
 
    <!-- jQuery -->
     <script src="../../vendor/jquery/jquery.min.js"></script>
