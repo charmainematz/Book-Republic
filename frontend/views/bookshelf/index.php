@@ -55,21 +55,22 @@ $user=User::findIdentity(Yii::$app->user->getId());
                                     <div class="panel panel-default" style="margin-top: 10px;">
                                         <div class="panel-heading">        
                                         </div>
-                                    <div class="panel-body">
+                                    <div class="panel-body ">
                                  
-                                        <?php
-                                           foreach($books as $book) {?>
+                                        
                                             <div class="row">
-                                               <div class="col-xs-12 col-md-3">
+                                                <?php foreach($books as $book) {?>
+                                            
+                                               <div class="col-6 col-sm-3">
                                                     <a href="#" class="thumbnail">
-                                                    <img height="42" width="42" src="<?php echo $book->cover_photo?>">
-                                                                               
+                                                    <img height="100" width="100" src="<?php echo $book->cover_photo?>">
+                                                      <figcaption align="center"><?php echo $book->title?></figcaption>                       
 
                                                     </a>
                                                 </div>
-                                            </div> 
-                                        <?php } ?>
-                                                                                                 
+                                           
+                                                <?php } ?>
+                                              </div>                                                     
                                     </div>
                                     </div>
                                 </div>
