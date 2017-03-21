@@ -12,7 +12,7 @@ use common\models\Genre;
 <div class="books-form">
 
     <?php $form = ActiveForm::begin(['options'=>['enctype'=>'multipart/form-data']]); ?>
-
+      <?= $form->field($model, 'file')->fileInput() ?>
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'author')->textInput(['maxlength' => true]) ?>
@@ -33,11 +33,12 @@ use common\models\Genre;
 
     <?= $form->field($model, 'review')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'file')->fileInput() ?>
+  
     
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+         <?= Html::submitButton('Add book to bookshelf',['class' => 'btn btn-outline btn-primary']) ?>
+
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -98,6 +98,7 @@ class SiteController extends Controller
                 $model = User::findUser($id);
                 $books = Books::findBooks($id);
                    $this->layout='bookworm';
+                
                 return $this->render('/bookshelf/index', [
                 'model' => $model,
                 'books' => $books,

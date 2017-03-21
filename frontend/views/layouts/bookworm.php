@@ -38,11 +38,12 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
     <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <?php $this->beginBody() ?>
+
     <?php
         Modal::begin([
             'id' => 'modal3',
             'size' => 'modal-sm',
-            'header'=>  "UPLOAD",
+            'header'=>  "Change profile picture",
         ]);
         echo "<div id = 'modalContent3'></div>";
         Modal::end();
@@ -201,14 +202,14 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
 
             <div class="navbar-default sidebar" role="navigation">             
                 <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
+                    <ul class="nav " id="side-menu">
                         <span> 
                             
                              <?= Html::button('',['value'=>Url::toRoute(['account/changeprofilepic','id'=>Yii::$app->user->getId()]),'class'=>'btn-link  glyphicon glyphicon-pencil pull-right', 'id'=>'changedp',"title"=>'Update your profile picture']) ?>            
                         </span>
                         <div id="profile">
                             <figure class="profile-userpic text-center">
-                                <img src="<?php echo $user->picture ?>" class="img-responsive" alt="Profile Picture">     
+                                <img src="<?php echo $user->picture; ?>" class="img-responsive" alt="Profile Picture">     
                             </figure>
                             <div class="text-center profile-usertitle">
                                 <div class="profile-usertitle-name">

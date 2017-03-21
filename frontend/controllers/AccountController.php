@@ -1,7 +1,5 @@
 <?php
 namespace frontend\controllers;
-
-
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -12,7 +10,6 @@ use common\models\User;
 use common\models\Account;
 use common\models\UserSearch;
 use yii\web\UploadedFile;
-
 /**
  * Account controller
  */
@@ -52,7 +49,6 @@ class AccountController extends Controller
             ],
         ];
     }
-
     /**
      * Displays homepage.
      *
@@ -110,37 +106,27 @@ class AccountController extends Controller
                 'model' => $model,
                 'model2' => $this->findModel2($id),
         ]);
-
        
         }
-
     }
-
      public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel1($id),
         ]);
     }
-
     public function actionChangepassword($id){
-
         //$input = new Account; 
         //$input->load(Yii::$app->request->post();
-
         //if(vali)
         //$model2 = $this->findModel2($id);
-
-
         //$this->layout= 'bookworm';
          
-
         //return $this->redirect(['index', 'id' => $model->id]);
         return $this->render('index', [
                 'model' => $this->findModel1($id),
                 'model2' => $model2,
         ]);
-
         
     }
     
@@ -160,6 +146,4 @@ class AccountController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-
-
 }

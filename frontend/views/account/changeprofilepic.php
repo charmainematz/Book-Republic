@@ -22,7 +22,7 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'file')->fileInput() ?>
     
 
-    <div class="form-group">
+    <div class="form-group" align="center">
         <?= Html::submitButton('Upload', ['class' => 'btn btn-outline btn-primary']) ?>
     </div>
 

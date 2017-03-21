@@ -99,6 +99,7 @@ class BookshelfController extends Controller
     {
         $this->layout='bookworm';
         $model = new Books();
+
         $user= User::findUser($id);
 
         if ($model->load(Yii::$app->request->post())){
@@ -120,7 +121,13 @@ class BookshelfController extends Controller
             {    $model->file->saveAs('uploads/'.$user->username.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension);
 
             }
-              return $this->refresh(); 
+            $this->layout='bookworm';
+            $books = Books::findBooks($id);
+            return $this->render('index', [
+                'model' => $model,
+                'books' => $books,
+        ]);
+        
           
             
         } else {

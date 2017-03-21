@@ -47,7 +47,7 @@ class Books extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'author', 'genre', 'description', 'condition'], 'required'],
+            [['title', 'author', 'genre', 'description', 'condition','cover_photo'], 'required'],
             [['rating'], 'integer'],
             [['file'], 'file'],
             [['cover_photo'], 'string','max'=>200],
@@ -73,7 +73,7 @@ class Books extends \yii\db\ActiveRecord
             'review' => 'Review',
             'cover_photo' => 'Cover Photo',
             'owner' => 'Owner',
-            'file' => 'Book cover',
+            'file' => 'Cover',
 
         ];
     }

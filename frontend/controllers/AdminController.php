@@ -130,19 +130,21 @@ class AdminController extends Controller
 
         $this->layout= 'bookworm';
          
-        if ($model->load(Yii::$app->request->post())){
+        if ($model->load(Yii::$app->request->post()) && $model->save()){
 
-            $rand1=rand(0,9999);
-            $rand2=rand(0,9999);
-            $model->file=UploadedFile::getInstance($model,'file');
+            if($model->file!=null){
+                $rand1=rand(0,9999);
+                $rand2=rand(0,9999);
+                $model->file=UploadedFile::getInstance($model,'file');
 
-            $model->cover_photo='uploads/'.$model->owner.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension;
-         
+                $model->cover_photo='uploads/'.$model->owner.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension;
+             
 
-             if($model->save())
-            
-            {    $model->file->saveAs('uploads/'.$model->owner.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension);
+                 if($model->save())
+                
+                {    $model->file->saveAs('uploads/'.$model->owner.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension);
 
+                }
             }
               return $this->refresh(); 
        
@@ -183,7 +185,7 @@ class AdminController extends Controller
     {
         $this->layout='bookworm';
         return $this->render('viewbook', [
-            'model' => Books::findBooks($id),
+            'model' => Books::findBook($id),
         ]);
     }
    
