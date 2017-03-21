@@ -62,7 +62,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
                                             <div class="row">
                                                <div class="col-xs-12 col-md-3">
                                                     <a href="#" class="thumbnail">
-                                                    <img src="<?php echo $book->cover_photo?>">
+                                                    <img height="42" width="42" src="<?php echo $book->cover_photo?>">
                                                                                
 
                                                     </a>

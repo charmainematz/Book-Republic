@@ -14,17 +14,7 @@ use yii\widgets\DetailView;
 
 
                 <h1><?= Html::encode($this->title) ?></h1>
-              <p>
-        <?= Html::a('Update', ['update', 'id' => $model->book_number], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->book_number], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
+              
             <?= DetailView::widget([
         'model' => $model,
         'attributes' => [

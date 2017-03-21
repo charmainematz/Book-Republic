@@ -13,6 +13,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\User;
+use common\models\Books;
 
 
 
@@ -70,10 +71,18 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
+       
         if (!Yii::$app->user->isGuest) {
-            $this->layout='bookworm';
-            return $this->render('/bookshelf/index',["id"=> Yii::$app->user->getId()]);      
+             $id = Yii::$app->user->getId();
+             $model = User::findUser($id);
+             $books = Books::findBooks($id);
+
+
+              $this->layout='bookworm';
+            return $this->render('/bookshelf/index', [
+                'model' => $model,
+                'books' => $books,
+        ]);     
 
         }
 
@@ -84,15 +93,28 @@ class SiteController extends Controller
              
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                 $this->layout='bookworm';
-                return $this->render('/bookshelf/index',["id"=> Yii::$app->user->getId()]);      
+                 
+                $id = Yii::$app->user->getId();
+                $model = User::findUser($id);
+                $books = Books::findBooks($id);
+                   $this->layout='bookworm';
+                return $this->render('/bookshelf/index', [
+                'model' => $model,
+                'books' => $books,
+                ]);       
                  
             } 
             if ($model2->load(Yii::$app->request->post())) {
                 if ($user = $model2->signup()) {
                     if (Yii::$app->getUser()->login($user)) {
-
-                         return $this->render('/bookshelf/index',["id"=> Yii::$app->user->getId()]);
+                    $id = Yii::$app->user->getId();
+                    $model = User::findUser($id);
+                    $books = Books::findBooks($id);
+                           $this->layout='bookworm';
+                        return $this->render('/bookshelf/index', [
+                        'model' => $model,
+                        'books' => $books,
+                        ]);   
                     }
                 }
             }
@@ -238,6 +260,15 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+       public  function findBooks($id)
+    {
+        $user = $this->findUser($id);
+        $books = Books::find()
+                ->where(['owner' => $user->username])
+                ->all();
+
+        return $books;
     }
 
 

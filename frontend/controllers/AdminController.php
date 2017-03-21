@@ -114,7 +114,7 @@ class AdminController extends Controller
 
      public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = User::findUser($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->username]);
@@ -126,7 +126,7 @@ class AdminController extends Controller
     }
     public function actionUpdatebook($id)
     {
-        $model = $this->findModel2($id);
+        $model = Books::findBook($id);
 
         $this->layout= 'bookworm';
          
@@ -156,7 +156,7 @@ class AdminController extends Controller
     }
     public function actionUpdateuser($id)
     {
-        $model = $this->findModel($id);
+        $model = User::findUser($id);
         $this->layout= 'bookworm';
          
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -176,14 +176,14 @@ class AdminController extends Controller
     {
         $this->layout='bookworm';
         return $this->render('viewuser', [
-            'model' => $this->findModel($id),
+            'model' => User::findUser($id),
         ]);
     }
     public function actionViewbook($id)
     {
         $this->layout='bookworm';
         return $this->render('viewbook', [
-            'model' => $this->findModel2($id),
+            'model' => Books::findBooks($id),
         ]);
     }
    

@@ -248,5 +248,13 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(Books::className(), ['owner' => 'username']);
     }
+    public static function findUser($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 
 }

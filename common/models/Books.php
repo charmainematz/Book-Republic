@@ -85,5 +85,21 @@ class Books extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['username' => 'owner']);
     }
-    
+    public static function findBooks($id)
+    {
+        $user = User::findUser($id);
+        $books = Books::find()
+                ->where(['owner' => $user->username])
+                ->all();
+
+        return $books;
+    }
+    public static function findBook($id)
+    {
+        if (($model = Books::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 }

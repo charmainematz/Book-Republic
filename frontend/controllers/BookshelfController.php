@@ -62,11 +62,12 @@ class BookshelfController extends Controller
      *
      * @return mixed
      */
-    public function actionIndex($id)
+    public function actionIndex()
     {
+        $id = Yii::$app->user->getId();
         $this->layout='bookworm';
-        $model = $this->findUser($id);
-        $books = $this->findBooks($id);
+        $model = User::findUser($id);
+        $books = Books::findBooks($id);
 
         
         return $this->render('index', [
@@ -80,7 +81,7 @@ class BookshelfController extends Controller
     {
        
        
-        $books = $this->findBooks($id);
+        $books = Books::findBooks($id);
         $this->layout='bookworm';
         return $this->render('mybookshelf', [
                 'books' => $books,
@@ -98,7 +99,7 @@ class BookshelfController extends Controller
     {
         $this->layout='bookworm';
         $model = new Books();
-        $user= $this->findUser($id);
+        $user= User::findUser($id);
 
         if ($model->load(Yii::$app->request->post())){
            
@@ -130,28 +131,5 @@ class BookshelfController extends Controller
         }
         
     }
-     public  function findBooks($id)
-    {
-        $user = $this->findUser($id);
-        $books = Books::find()
-                ->where(['owner' => $user->username])
-                ->all();
-
-        return $books;
-    }
-
-
-    public static function findUser($id)
-    {
-        if (($model = User::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-
-
-
-
-   
+    
 }
