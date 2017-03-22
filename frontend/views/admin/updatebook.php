@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
                
             <!-- /.row -->
             <div class="row">
-                  <div class="col-lg-12">
+                  <div class="col col-md-6">
 
     <?php $form = ActiveForm::begin(); ?>
 

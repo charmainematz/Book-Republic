@@ -7,9 +7,17 @@ use common\models\User;
 $this->title = 'Book Republic';
 
 $user=User::findIdentity(Yii::$app->user->getId());
-?>
+?> <?php
+                Modal::begin([
+                        'id' => 'modal4',
+                        'size' => 'modal-sm',
+                    ]);
+                echo "<div id = 'modalContent4'></div>";
+                Modal::end();
+                ?>     
 
-    <div id="page-wrapper" class="bookshelf">       
+    <div id="page-wrapper" class="bookshelf">  
+    
         <!-- /.row -->
         <div class="row">
             <div class="col-6">
@@ -21,6 +29,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
                 echo "<div id = 'modalContent2'></div>";
                 Modal::end();
                 ?>
+               
                 <div class="panel panel-default">    
                     <div class="panel-body" >
                         <!-- Nav tabs -->
@@ -62,11 +71,12 @@ $user=User::findIdentity(Yii::$app->user->getId());
                                       
                                         <?php foreach($books as $book) {?>
                                         
-                                           <div class=" col-sm-2">
-                                                <a href="#" class="thumbnail">
-                                                <img height="100" width="100" src="<?php echo $book->cover_photo?>">
+                                           <div class="col-sm-2">
+                                                <div class="thumbnail">
+                                                <img height="100" width="100" src="<?php echo $book->cover_photo?>"
+                                                class="managebook" value="<?= Url::to(['bookshelf/managebook','id' => $book->book_number]) ?>">
                                                   <figcaption align="center"><?php echo $book->title?></figcaption>                       
-                                                </a>
+                                                </div>
                                              
                                             </div>                                     
                                         <?php } ?>

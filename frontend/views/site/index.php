@@ -15,9 +15,10 @@ $this->title = 'Book Republic';
     <div class="body-content">
         <?php
             Modal::begin([
-                    'header'=>'<h4>Register</h4>',
+                    'header'=>'<h4 align="center">Register</h4>',
                     'id' => 'modal',
-                    'size' => 'modal-lg',
+                    'size' => 'modal-sm',
+
                 ]);
             echo "<div id = 'modalContent'></div>";
             Modal::end();
@@ -40,7 +41,7 @@ $this->title = 'Book Republic';
                    
                     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>  
                     
-                    <?= $form->field($model, 'username')->textInput(['autofocus' => true,'placeholder'=>'Username','label'=>false]) ?>
+                    <?= $form->field($model, 'username')->textInput(['autofocus' => true,'placeholder'=>'Username']) ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>
                     
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>

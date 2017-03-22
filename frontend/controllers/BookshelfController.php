@@ -26,10 +26,10 @@ class BookshelfController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','admin','addbook','logout','mybookshelf'],
+                'only' => ['index','admin','addbook','logout','mybookshelf','managebook'],
                 'rules' => [
                     [
-                        'actions' => ['index','addbook','logout','mybookshelf'],
+                        'actions' => ['index','addbook','logout','mybookshelf','managebook'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -90,7 +90,34 @@ class BookshelfController extends Controller
         
               
     }
-
+     public function actionManagebook($id)
+    {
+       
+       
+        $book = Books::findBook($id);
+     
+        return $this->renderAjax('managebook', [
+                'model' => $book,
+        ]);
+        
+        
+              
+    }
+    public function actionDeletebook($id)
+    {
+       
+       
+        $book = Books::findBook($id)->delete();
+        $books = Books::findBooks($id);
+        $model = User::findByUsername($book->owner);
+        
+        return $this->render('index', [
+                'model' => $model,
+                'books' => $books,
+        ]);
+        
+        
+    }
    
 
 

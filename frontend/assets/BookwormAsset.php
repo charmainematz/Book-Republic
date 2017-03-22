@@ -19,6 +19,7 @@ class BookwormAsset extends AssetBundle
     ];
     public $js = [
         'js/main.js', 
+        'js/managebook.js', 
         'js/bookshelf.js',
         'js/changedp.js',
       //  '../../vendor/jquery/jquery.min.js',

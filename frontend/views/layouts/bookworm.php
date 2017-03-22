@@ -275,7 +275,7 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
 <?php $this->endBody() ?>
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Book Republc <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Book Republic <?= date('Y') ?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
