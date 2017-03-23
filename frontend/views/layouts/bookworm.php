@@ -50,7 +50,7 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
     ?>
     <div class="wrapper" >    
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: black" >
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #10171D;" >
             <div class="navbar-header navbar-brand" >
                  
                <a href="<?= Url::toRoute(['bookshelf/index','id'=>$user->id])?>"><img src="../images/banner.png" class=" pull-left" /> </a>
@@ -220,6 +220,9 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
                                 <div class="profile-usertitle-title">
                                     <?php echo $user->role; ?>
                                 </div>
+                              
+                                    <i><?php echo $user->bio; ?></i>
+                                
                             </div>       
                         </div>
                         <li>
@@ -273,10 +276,63 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
 <?php $this->endBody() ?>
-<footer class="footer">
+<footer class="footer" style="margin-bottom: 0; background-color: #10171D; color:#cfd0d1" >
+
     <div class="container">
-        <p class="pull-left">&copy; Book Republic <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
+            <section style="height:20px;"></section>
+
+
+         <div class="row">
+            <div class="col-md-3">
+               
+             <a href="<?= Url::toRoute(['bookshelf/index','id'=>$user->id])?>">
+                <img src="../images/banner.png" class=" pull-left" /></a>
+                </br></br>
+                <p>&copy;  <?= date('Y') ?> All rights reserved</p>
+                <p></p>
+               
+            </div>
+            <div class="col-md-4">
+                <h5>Browse by genre</h5>
+                 <div class="col-md-6">
+                    <ul class="pages" >
+                        <li><a href="#">Art</a></li>
+                        <li><a href="#">Biography</a></li>
+                        <li><a href="#">Chicklit</a></li>
+                        <li><a href="#">Classic</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list">
+                        <li><a href="#">Fiction</a></li>
+                        <li><a href="#">Nonfiction</a></li>
+                       
+                        <li><a href="#">More...</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 ">
+                <h5>Follow Us</h5>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">RSS</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Newsletter</h5>
+               
+                <p>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Email address">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-envelope"></span></button>
+                      </span>
+                    </div><!-- /input-group -->
+                 </p>
+            </div>
+        </div>
     </div>
 </footer>
 </html>

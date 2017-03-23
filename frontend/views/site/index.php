@@ -37,12 +37,12 @@ $this->title = 'Book Republic';
                     ?>
              </div>
 
-            <div class="col-xs-6 col-lg-4 panel-body ">
+            <div class="col-xs-6 col-lg-4 panel-body  thumbnail">
                    
                     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>  
                     
-                    <?= $form->field($model, 'username')->textInput(['autofocus' => true,'placeholder'=>'Username']) ?>
-                    <?= $form->field($model, 'password')->passwordInput() ?>
+                    <?= $form->field($model, 'username')->textInput(['autofocus' => true,'placeholder'=>'Username'])->label(false) ?>
+                    <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Username'])->label(false) ?>
                     
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>
                        

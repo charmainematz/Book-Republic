@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
+use yii\widgets\ActiveForm;
 
 
 ?>
@@ -9,28 +11,36 @@ use yii\widgets\DetailView;
   
                
         <div class="row">
-                <div class="col-2 thumbnail">
+                <div class="col-4" align="center">
+                    <span>
                   
-                    <img height="120" width="120" src="<?php echo $model->cover_photo?>">
-                
+                    <img height="140" width="100" src="<?php echo $model->cover_photo?>">
+                      </span>
                 </div>
+                <br/>
+                <div class="col-8 thumbnail"> 
 
-                <div class="col-8 thumbnail" align="left"> 
-                     
+                    <div class="col-sm-offset-1"> 
                     <strong>Title:</strong> <?php echo $model->title ?> <br/> 
                     <strong>Author:</strong> <?php echo $model->author ?><br/> 
                     <strong>Genre:</strong> <?php echo $model->genre ?> <br/> 
                     <strong>Description:</strong> <?php echo $model->description ?><br/> 
                     <strong>Rating:</strong> <?php echo $model->rating ?><br/> 
                     <strong>Condition:</strong> <?php echo $model->condition ?><br/> 
-                              
+                    </div>  
+                    
                 </div>
         </div> 
        
         <div class="row" align="center">
-                 <?=Html::button ('Update', ['class' => 'btn btn-outline btn-primary', 'name' => 'login-button']) ?>          
-                <?= Html::button('Delete',['class'=>'btn btn-outline btn-danger', 'id'=>'Modal_deleteBook']) ?>
-            
+
+               <?php $form = ActiveForm::begin(['action' =>['bookshelf/managebook','id'=>$model->book_number], 'method' => 'post']); ?> 
+    
+
+                <?= Html::submitButton('Update',['class'=>'btn btn-outline btn-primary',"title"=>'Update book',"name"=>"update","value"=>"update"]); ?>
+                       
+                <?= Html::submitButton('Delete',['class'=>'btn btn-outline btn-danger', 'id'=>'Modal_deleteBook',"name"=>"delete", "value"=>"delete"]); ?>
+                <?php ActiveForm::end(); ?> 
         </div>
         
 

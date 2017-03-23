@@ -26,10 +26,10 @@ class BookshelfController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','admin','addbook','logout','mybookshelf','managebook'],
+                'only' => ['index','admin','addbook','logout','mybookshelf','managebook','updatebook'],
                 'rules' => [
                     [
-                        'actions' => ['index','addbook','logout','mybookshelf','managebook'],
+                        'actions' => ['index','addbook','logout','mybookshelf','managebook','updatebook'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -95,11 +95,27 @@ class BookshelfController extends Controller
        
        
         $book = Books::findBook($id);
-     
-        return $this->renderAjax('managebook', [
-                'model' => $book,
-        ]);
+
         
+
+            if(isset($_POST['update']))
+            {
+                $this->layout="bookworm";
+                return $this->render('/admin/updatebook', [
+                    'model' => $book,
+                ]);
+            }
+                if(isset($_POST['delete']))
+            {
+            echo "delete code here ";
+            }   
+        
+        else{
+            return $this->renderAjax('managebook', [
+                    'model' => $book,
+            ]);
+
+        }
         
               
     }
@@ -120,6 +136,37 @@ class BookshelfController extends Controller
     }
    
 
+public function actionUpdatebook($id)
+    {
+        $model = Books::findBook($id);
+
+        $this->layout= 'bookworm';
+         
+        if ($model->load(Yii::$app->request->post()) && $model->save()){
+
+            if($model->file!=null){
+                $rand1=rand(0,9999);
+                $rand2=rand(0,9999);
+                $model->file=UploadedFile::getInstance($model,'file');
+
+                $model->cover_photo='uploads/'.$model->owner.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension;
+             
+
+                 if($model->save())
+                
+                {    $model->file->saveAs('uploads/'.$model->owner.'_bookshelf_'.$rand1.'_'.$rand2.'.'.$model->file->extension);
+
+                }
+            }
+              return $this->refresh(); 
+       
+        }
+        else{
+              return $this->render('/admin/updatebook', [
+                'model' => $model,
+            ]);
+        }
+    }
 
 
     public function actionAddbook($id)

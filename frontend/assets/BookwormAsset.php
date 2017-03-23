@@ -13,6 +13,7 @@ class BookwormAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/sb-admin-2.css',
+        'css/footer.css',
         '../../vendor/bootstrap/css/bootstrap.min.css',
         '../../vendor/metisMenu/metisMenu.min.css',
         '../../vendor/font-awesome/css/font-awesome.min.css',
