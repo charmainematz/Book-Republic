@@ -72,10 +72,12 @@ $user=User::findIdentity(Yii::$app->user->getId());
                                         <?php foreach($books as $book) {?>
                                         
                                            <div class="col-sm-2">
+                                               
                                                 <div class="thumbnail">
                                                 <img height="100" width="100" src="<?php echo $book->cover_photo?>"
                                                 class="managebook" value="<?= Url::to(['bookshelf/managebook','id' => $book->book_number]) ?>">
-                                                  <figcaption align="center"><?php echo $book->title?></figcaption>                       
+                                                  <figcaption align="center"><?php echo $book->title?></figcaption>   
+                                                               
                                                 </div>
                                              
                                             </div>                                     

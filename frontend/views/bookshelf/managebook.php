@@ -39,7 +39,7 @@ use yii\widgets\ActiveForm;
 
                 <?= Html::submitButton('Update',['class'=>'btn btn-outline btn-primary',"title"=>'Update book',"name"=>"update","value"=>"update"]); ?>
                        
-                <?= Html::submitButton('Delete',['class'=>'btn btn-outline btn-danger', 'id'=>'Modal_deleteBook',"name"=>"delete", "value"=>"delete"]); ?>
+                <?= Html::submitButton('Delete',['class'=>'btn btn-outline btn-danger', 'id'=>'Modal_deleteBook',"name"=>"delete", "value"=>"delete", "data-confirm"=>"Are you sure you want to delete this book?"]); ?>
                 <?php ActiveForm::end(); ?> 
         </div>
         

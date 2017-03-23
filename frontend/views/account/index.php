@@ -45,6 +45,11 @@ $this->title = 'Book Republic';
                     <!-- Tab panes -->
                     <div class="tab-content">                      
                         <div class="tab-pane fade in active" id="edit">
+                             <h4>Update Information</h4>
+          
+            <!-- -->
+                            <div class="row ">
+                                <div class="col-md-4 ">
                   
                             <?php $form = ActiveForm::begin(['action' =>['account/update','id'=>$model->id], 'method' => 'post']); ?>
                             <?= $form->field($model, 'bio')->textInput(['maxlength' => true]) ?>  
@@ -55,12 +60,13 @@ $this->title = 'Book Republic';
                             <?= $form->field($model, 'status')->textInput(['disabled'=>true]) ?>
                              
                             <div class="form-group">
-                                <?= Html::submitButton(
-                                    $model->isNewRecord ? 'Create' : 'Save changes', 
+                                <?= Html::submitButton('Save changes', 
                                     ['class' =>  'btn btn-outline btn-primary']) 
                                 ?>
                             </div>
                              <?php ActiveForm::end(); ?> 
+                             </div>
+                             </div>
                         </div>                                                       
                         <div class="tab-pane fade" id="changepassword">
                             <?php $form = ActiveForm::begin(['action' =>['account/changepassword','id'=>$model2->id], 'method' => 'post']); ?>  

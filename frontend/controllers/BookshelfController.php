@@ -101,21 +101,21 @@ class BookshelfController extends Controller
             if(isset($_POST['update']))
             {
                 $this->layout="bookworm";
-                return $this->render('/admin/updatebook', [
+                return $this->render('updatebook', [
                     'model' => $book,
                 ]);
             }
                 if(isset($_POST['delete']))
             {
-            echo "delete code here ";
+                $book->delete();
             }   
         
-        else{
-            return $this->renderAjax('managebook', [
-                    'model' => $book,
-            ]);
+            else{
+                return $this->renderAjax('managebook', [
+                        'model' => $book,
+                ]);
 
-        }
+            }
         
               
     }
@@ -141,6 +141,8 @@ public function actionUpdatebook($id)
         $model = Books::findBook($id);
 
         $this->layout= 'bookworm';
+
+         if(isset($_POST['save'])){
          
         if ($model->load(Yii::$app->request->post()) && $model->save()){
 
@@ -161,11 +163,26 @@ public function actionUpdatebook($id)
               return $this->refresh(); 
        
         }
-        else{
-              return $this->render('/admin/updatebook', [
+    }
+
+        if(isset($_POST['back']))
+            {
+                $userid = Yii::$app->user->getId();
+                $usermodel = User::findUser($userid);
+                $booksmodel = Books::findBooks($userid);
+                $this->layout="bookworm";
+                return $this->render('/bookshelf/index', [
+                    'model' => $usermodel,
+                    'books' => $booksmodel,
+                ]);
+            }
+
+        
+      
+        return $this->render('/bookshelf/updatebook', [
                 'model' => $model,
-            ]);
-        }
+        ]);
+        
     }
 
 

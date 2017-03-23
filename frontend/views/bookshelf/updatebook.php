@@ -2,6 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\Genre;
+use yii\helpers\Url;
+use yii\widgets\DetailView;
+
+
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Books */
@@ -17,16 +23,24 @@ use yii\widgets\ActiveForm;
     <div class="row thumbnail">
         <div class="col-md-4 ">
 
-            <?php $form = ActiveForm::begin(); ?>
+             <?php $form = ActiveForm::begin(['action' =>['bookshelf/updatebook','id'=>$model->book_number], 'method' => 'post']); ?>
 
             <?= $form->field($model, 'title')->textInput(['maxlength' => true,'placeholder'=>'Title']) ?>
 
             <?= $form->field($model, 'author')->textInput(['maxlength' => true,'placeholder'=>'Author'])?>
 
-            <?= $form->field($model, 'genre')->textInput(['maxlength' => true,'placeholder'=>'Genre']) ?>
+            <?= $form->field($model, 'genre')->dropDownList(ArrayHelper::map(Genre::find()->all(),'genre_id', 'genre'),
+                                    ['prompt'=>'Select genre']
+                                    )
+
+            ?>
 
             <?= $form->field($model, 'description')->textInput(['maxlength' => true,'placeholder'=>'Description']) ?>
-               <?= $form->field($model, 'file')->fileInput() ?>
+              <?= Html::submitButton('Save changes', ['class' => 'btn btn-outline btn-primary',"name"=>"save", "value"=>"save"]) ?>
+           
+          
+              <?= Html::submitButton('Go Back',['class'=>'btn btn-outline btn-primary',"name"=>"back", "value"=>"back"]); ?>
+            
         </div>
 
             
@@ -39,10 +53,8 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'review')->textInput(['maxlength' => true,'placeholder'=>'Review']) ?>
             <br>
 
-            <?= $form->field($model, 'owner')->textInput(['maxlength' => true,'placeholder'=>'Owner']) ?>
-            <?= Html::submitButton('Save changes', ['class' => 'btn btn-outline btn-primary']) ?>
-           
-             <?= Html::submitButton('Go Back', ['class' => 'btn btn-outline btn-primary']) ?>
+              <?= $form->field($model, 'file')->fileInput() ?>
+          
             <?php ActiveForm::end(); ?>  
 
         </div>

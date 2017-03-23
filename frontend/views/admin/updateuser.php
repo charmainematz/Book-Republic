@@ -8,30 +8,32 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 <div id="page-wrapper">
-               
-            <!-- /.row -->
-            <div class="row">
-                  <div class="col-lg-12">
-<div class="user-form">
+         <br>      
+        <h4>Update <?php echo $model->username."'s"?> Information</h4>
+          
+            <!-- -->
+    <div class="row thumbnail">
+        <div class="col-md-4 ">
 
-    <?php $form = ActiveForm::begin(); ?>
+        <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
+        <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+        </div>
+       <div class="col-md-4 ">
+
 
     <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'role')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'role')->dropDownList(['bookworm' => 'Bookworm', 'Administrator' => 'Admin']) ?>
+   
 
     <?= $form->field($model, 'location')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'picture')->textInput() ?>
+    <?= $form->field($model, 'bio')->textInput() ?>
 
     <div class="form-group">
          <?= Html::submitButton('Save changes', ['class' => 'btn btn-outline btn-primary']) ?>
@@ -39,8 +41,12 @@ use yii\widgets\ActiveForm;
 
     <?php ActiveForm::end(); ?>
 
+   </div>
+        <div class="col-md-4"> 
+         <span>
+                  
+            <img height="280" width="180" src="<?php echo $model->picture?>">
+            </span>
+        </div>
+    </div> 
 </div>
-</div>
-
-</div>
-
