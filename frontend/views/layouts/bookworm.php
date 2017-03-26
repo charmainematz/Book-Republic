@@ -50,7 +50,7 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
     ?>
     <div class="wrapper" >    
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #10171D;" >
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color:#10171D;" >
             <div class="navbar-header navbar-brand" >
                  
                <a href="<?= Url::toRoute(['bookshelf/index','id'=>$user->id])?>"><img src="../images/banner.png" class=" pull-left" /> </a>
@@ -184,6 +184,7 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
+                         <li><a href="<?= Url::toRoute(['bookshelf/dashboard','id' => Yii::$app->user->getId()])?>"><i class="fa fa-user fa-fw"></i> Dashboard</a>
                         <li><a href="<?= Url::toRoute(['account/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
@@ -294,44 +295,32 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
             </div>
             <div class="col-md-4">
                 <h5>Browse by genre</h5>
-                 <div class="col-md-6">
-                    <ul class="pages" >
+                 <div class="col">
+                    <ul class="list-inline" >
                         <li><a href="#">Art</a></li>
                         <li><a href="#">Biography</a></li>
                         <li><a href="#">Chicklit</a></li>
                         <li><a href="#">Classic</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul class="list">
                         <li><a href="#">Fiction</a></li>
+                        <li><a href="#">Nonfiction</a></li>
+                        <li><a href="#">Fiction</a></li>
+                        <li><a href="#">Nonfiction</a></li>
+                         <li><a href="#">Fiction</a></li>
                         <li><a href="#">Nonfiction</a></li>
                        
                         <li><a href="#">More...</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2 ">
+            <div class="col-md-4 pull-right ">
                 <h5>Follow Us</h5>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">RSS</a></li>
+                <ul >
+                     <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+                   <a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
+                    
                 </ul>
             </div>
-            <div class="col-md-3">
-                <h5>Newsletter</h5>
-               
-                <p>
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Email address">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-envelope"></span></button>
-                      </span>
-                    </div><!-- /input-group -->
-                 </p>
-            </div>
+            
         </div>
     </div>
 </footer>

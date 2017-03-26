@@ -85,9 +85,20 @@ class BookshelfController extends Controller
         $this->layout='bookworm';
         return $this->render('mybookshelf', [
                 'books' => $books,
+        ]); 
+              
+    }
+
+    public function actionDashboard($id)
+    {
+       
+       
+        $books = Books::findBooks($id);
+        $this->layout='bookworm';
+        return $this->render('dashboard', [
+                'books' => $books,
         ]);
-        
-        
+           
               
     }
      public function actionManagebook($id)

@@ -25,9 +25,11 @@ $this->title = 'Book Republic';
         ?>
 
         <div class="row">
+            <section style="height:70px;"></section>
              <div class="col-xs-12 col-sm-6 col-lg-8">
                     <?php
                          echo Carousel::widget([
+
                         'items' => [
                              ['content'=>  Html::img('../images/a.jpg')],
                              ['content'=>  Html::img('../images/a1.jpg')],
@@ -37,12 +39,12 @@ $this->title = 'Book Republic';
                     ?>
              </div>
 
-            <div class="col-xs-6 col-lg-4 panel-body  thumbnail">
+            <div class="col-xs-6 col-lg-4 panel-body">
                    
                     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>  
                     
                     <?= $form->field($model, 'username')->textInput(['autofocus' => true,'placeholder'=>'Username'])->label(false) ?>
-                    <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Username'])->label(false) ?>
+                    <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Password'])->label(false) ?>
                     
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>
                        

@@ -79,7 +79,7 @@ class SiteController extends Controller
 
 
               $this->layout='bookworm';
-            return $this->render('/bookshelf/index', [
+            return $this->render('/bookshelf/dashboard', [
                 'model' => $model,
                 'books' => $books,
         ]);     
@@ -99,7 +99,7 @@ class SiteController extends Controller
                 $books = Books::findBooks($id);
                    $this->layout='bookworm';
                 
-                return $this->render('/bookshelf/index', [
+                return $this->render('/bookshelf/dashboard', [
                 'model' => $model,
                 'books' => $books,
                 ]);       
@@ -112,7 +112,7 @@ class SiteController extends Controller
                     $model = User::findUser($id);
                     $books = Books::findBooks($id);
                            $this->layout='bookworm';
-                        return $this->render('/bookshelf/index', [
+                        return $this->render('/bookshelf/dashboard', [
                         'model' => $model,
                         'books' => $books,
                         ]);   

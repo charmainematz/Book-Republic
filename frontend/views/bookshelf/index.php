@@ -20,6 +20,9 @@ $user=User::findIdentity(Yii::$app->user->getId());
     
         <!-- /.row -->
         <div class="row">
+            <div class="col-lg-12">
+                    <h2 class="page-header">Bookshelf</h2>
+                </div>
             <div class="col-6">
                 <?php
                 Modal::begin([
@@ -64,7 +67,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
                                     <div class="panel panel-default" style="margin-top: 10px;">
                                         <div class="panel-heading">        
                                         </div>
-                                    <div class="panel-body ">
+                                    <div class="panel-body">
                                  
                                         
                                         <div class="row " align="left">
@@ -72,13 +75,13 @@ $user=User::findIdentity(Yii::$app->user->getId());
                                         <?php foreach($books as $book) {?>
                                         
                                            <div class="col-sm-2">
-                                               
-                                                <div class="thumbnail">
+                                                 <a class="thumbnail" href="#">
                                                 <img height="100" width="100" src="<?php echo $book->cover_photo?>"
                                                 class="managebook" value="<?= Url::to(['bookshelf/managebook','id' => $book->book_number]) ?>">
                                                   <figcaption align="center"><?php echo $book->title?></figcaption>   
                                                                
-                                                </div>
+                                               
+                                                </a>
                                              
                                             </div>                                     
                                         <?php } ?>
