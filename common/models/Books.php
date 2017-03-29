@@ -103,6 +103,16 @@ class Books extends \yii\db\ActiveRecord
 
         return $books;
     }
+    public static function countbooksbygenre($id)
+    {
+        
+        $books = Books::find()
+                ->where(['genre' => $id])
+                ->all();
+        $count = count($books);
+
+        return $count;
+    }
     public static function findBook($id)
     {
         if (($model = Books::findOne($id)) !== null) {

@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Url;
 use common\models\Genre;
+use common\models\Books;
 use yii\helpers\Html;
 ?>
 
@@ -34,10 +35,11 @@ use yii\helpers\Html;
                     <!-- /.panel -->
                     <div class=" panel panel-default">
                         <div class="panel-heading">
-                            <i class="glyphicon glyphicon-folder-open "></i> Browse
+                            
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body"  style="width: 100%; height: 350px; overflow: scroll">
+                        <div class="panel-body"  style="width: 100%; height: 550px; overflow: scroll">
+                        <i class="glyphicon glyphicon-folder-open "></i>   Browse <br>
                           <ul class="list list-unstyled">
                           <?php
                                 $genre= Genre::find()->all();
@@ -47,8 +49,8 @@ use yii\helpers\Html;
                                  
                                 <li>
                                     <a href="<?= Url::toRoute(['bookshelf/browsebooksbygenre','id' =>$genre_name->genre_id])?>">
-                                    <i class="glyphicon glyphicon-menu-right"></i> 
-                                    <?php echo $genre_name->genre ?></a>
+                                   
+                                    <?php echo $genre_name->genre." (".Books::countbooksbygenre($genre_name->genre_id).")" ?></a>
                                 </li>
 
                                 
@@ -58,8 +60,7 @@ use yii\helpers\Html;
                         <!-- /.panel-body -->                  
                     </div>
                     <div class=" panel panel-default">
-                    <!-- /.panel .chat-panel -->
-                      <a class="twitter-timeline"  data-width="300" data-height="500"  href="https://twitter.com/PriBethCharm/lists/book-republic">A Twitter List by Book Republic</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    
                 </div>
             </div>
     </div>
