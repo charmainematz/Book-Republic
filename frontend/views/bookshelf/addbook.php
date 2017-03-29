@@ -19,10 +19,11 @@ use common\models\Genre;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true,'placeholder'=>'Title'])->label(false)  ?>
 
     <?= $form->field($model, 'author')->textInput(['maxlength' => true,'placeholder'=>'Author'])->label(false)  ?>
-    
+
+
     <?= $form->field($model, 'genre')->dropDownList(ArrayHelper::map(Genre::find()->all(),'genre_id', 'genre'),
                                     ['prompt'=>'Select genre']
-                                    )->label(false) 
+                                    ) 
 
     ?>
         

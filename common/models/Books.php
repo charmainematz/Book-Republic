@@ -94,6 +94,15 @@ class Books extends \yii\db\ActiveRecord
 
         return $books;
     }
+    public static function findBooksbygenre($id)
+    {
+        
+        $books = Books::find()
+                ->where(['genre' => $id])
+                ->all();
+
+        return $books;
+    }
     public static function findBook($id)
     {
         if (($model = Books::findOne($id)) !== null) {

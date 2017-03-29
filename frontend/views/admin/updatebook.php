@@ -1,7 +1,8 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\Genre;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Books */
@@ -23,7 +24,12 @@ use yii\widgets\ActiveForm;
 
             <?= $form->field($model, 'author')->textInput(['maxlength' => true,'placeholder'=>'Author'])?>
 
-            <?= $form->field($model, 'genre')->textInput(['maxlength' => true,'placeholder'=>'Genre']) ?>
+
+             <?= $form->field($model, 'genre')->dropDownList(ArrayHelper::map(Genre::find()->all(),'genre_id', 'genre'),
+                                    ['prompt'=>'Select genre']
+                                    )->label(false) 
+
+                ?>
 
             <?= $form->field($model, 'description')->textInput(['maxlength' => true,'placeholder'=>'Description']) ?>
                <?= $form->field($model, 'file')->fileInput() ?>

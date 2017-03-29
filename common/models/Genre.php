@@ -42,4 +42,13 @@ class Genre extends \yii\db\ActiveRecord
             'genre_id' => 'Genre ID',
         ];
     }
+     public static function getGenreName($id)
+    {
+        if ($model = Genre::find()->where(['genre_id'=>$id])->one() !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
+    }
 }

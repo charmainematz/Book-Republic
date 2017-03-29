@@ -3,9 +3,7 @@ use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use common\models\User;
-
 $this->title = 'Book Republic';
-
 $user=User::findIdentity(Yii::$app->user->getId());
 ?> <?php
                 Modal::begin([
@@ -17,13 +15,13 @@ $user=User::findIdentity(Yii::$app->user->getId());
                 ?>     
 
     <div id="page-wrapper" class="bookshelf">  
+    <section style="height:10px;"></section>
     
-        <!-- /.row -->
+    
+           <!-- /.row -->
         <div class="row">
-            <div class="col-lg-12">
-                    <h2 class="page-header">Bookshelf</h2>
-                </div>
-            <div class="col-6">
+           
+            <div class="col-lg-8">
                 <?php
                 Modal::begin([
                         'id' => 'modal2',
@@ -33,7 +31,10 @@ $user=User::findIdentity(Yii::$app->user->getId());
                 Modal::end();
                 ?>
                
-                <div class="panel panel-default">    
+                <div class="panel panel-info">    
+
+                    <div class="panel-heading">
+                    </div>
                     <div class="panel-body" >
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs">
@@ -45,17 +46,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
                             <li><a href="#messages" data-toggle="tab">Swap Requests</a>
                             </li>
                           
-                            <li class="sidebar-search pull-right col-6 col-sm-3">
-                                <div class="input-group custom-search-form">
-                                    <input type="text" class="form-control" placeholder="">
-                                    <span class="input-group-btn"> 
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                    </span>
-                                </div>
-                                <!-- /input-group -->
-                             </li>
+                            
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content ">                           
@@ -70,16 +61,15 @@ $user=User::findIdentity(Yii::$app->user->getId());
                                     <div class="panel-body">
                                  
                                         
-                                        <div class="row " align="left">
+                                        <div class="row " >
                                       
                                         <?php foreach($books as $book) {?>
                                         
-                                           <div class="col-sm-2">
+                                           <div class="col-sm-3">
                                                  <a class="thumbnail" href="#">
-                                                <img height="100" width="100" src="<?php echo $book->cover_photo?>"
+                                                <img title="<?php echo $book->title?>" height="100" width="100" src="<?php echo $book->cover_photo?>"
                                                 class="managebook" value="<?= Url::to(['bookshelf/managebook','id' => $book->book_number]) ?>">
-                                                  <figcaption align="center"><?php echo $book->title?></figcaption>   
-                                                               
+                                                  
                                                
                                                 </a>
                                              
@@ -108,13 +98,41 @@ $user=User::findIdentity(Yii::$app->user->getId());
                 </div>
                 <!-- /.panel -->
             </div>
-          </div>
+             <div class="col-lg-4">
+               
+                    <!-- /.panel -->
+                   
+                    <div class="panel panel-DEFAULT">
+                    <div class="panel-heading">
+                         <ul class="list-inline">
+                       
+                        Reading List
+                        <li><button title="Currently Reading" type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-book"></i>
+                            </button></li> 
+                        <li> <button  title="Have Read"  type="button" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-check"></i>
+                            </button></li>             
+                        <li><button title="To be read" type="button" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-list"></i>
+                            </button></li>
+                         <li><button type="button" title="Favorites" class="btn btn-danger btn-circle"><i class="fa fa-heart"></i>
+                            </button> </li>
+                            
+                    </ul>
+                    </div>
+                       
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                    
+                        <!-- /.panel-footer -->
+                    
+                    <!-- /.panel .chat-panel -->
+                      
+              
+                <!-- /.col-lg-4 -->
+                </div>
+            </div>
+            </div>
     </div>
     <!-- /#page-wrapper -->
-
-   
-
-   
-
-
-

@@ -280,16 +280,16 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
 <footer class="footer" style="margin-bottom: 0; background-color: #10171D; color:#cfd0d1" >
 
     <div class="container">
-            <section style="height:20px;"></section>
+            <section style="height:50px;"></section>
 
 
          <div class="row">
             <div class="col-md-3">
                
-             <a href="<?= Url::toRoute(['bookshelf/index','id'=>$user->id])?>">
+             <a href="<?= Url::to(['bookshelf/index','id'=>$user->id])?>">
                 <img src="../images/banner.png" class=" pull-left" /></a>
                 </br></br>
-                <p>&copy;  <?= date('Y') ?> All rights reserved</p>
+             <p>&copy;  <?= date('Y') ?> All rights reserved</p>
                 <p></p>
                
             </div>
@@ -305,7 +305,7 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
                         <li><a href="#">Nonfiction</a></li>
                         <li><a href="#">Fiction</a></li>
                         <li><a href="#">Nonfiction</a></li>
-                         <li><a href="#">Fiction</a></li>
+                        <li><a href="#">Fiction</a></li>
                         <li><a href="#">Nonfiction</a></li>
                        
                         <li><a href="#">More...</a></li>

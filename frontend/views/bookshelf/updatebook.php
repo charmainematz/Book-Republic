@@ -31,9 +31,10 @@ use yii\widgets\DetailView;
 
             <?= $form->field($model, 'genre')->dropDownList(ArrayHelper::map(Genre::find()->all(),'genre_id', 'genre'),
                                     ['prompt'=>'Select genre']
-                                    )
+                                    )->label(false) 
 
             ?>
+            
 
             <?= $form->field($model, 'description')->textInput(['maxlength' => true,'placeholder'=>'Description']) ?>
               <?= Html::submitButton('Save changes', ['class' => 'btn btn-outline btn-primary',"name"=>"save", "value"=>"save"]) ?>

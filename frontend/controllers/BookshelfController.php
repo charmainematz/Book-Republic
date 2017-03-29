@@ -130,6 +130,22 @@ class BookshelfController extends Controller
         
               
     }
+
+     public function actionBrowsebooksbygenre($id)
+    {
+       
+       
+        $books = Books::findBooksbygenre($id);
+        
+        return $this->renderPartial('viewbygenre', [
+                
+                'books' => $books,
+        ]);
+        
+        
+    }
+   
+
     public function actionDeletebook($id)
     {
        
