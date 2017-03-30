@@ -104,14 +104,29 @@ class Books extends \yii\db\ActiveRecord
         return $books;
     }
     public static function countbooksbygenre($id)
-    {
-        
+    {      
         $books = Books::find()
                 ->where(['genre' => $id])
                 ->all();
         $count = count($books);
 
         return $count;
+    }
+    public static function findLatestBook()
+    {
+        
+        $books = Books::find()
+                ->orderBy(['book_number' => SORT_DESC])
+                ->limit(4)
+                ->all();
+        
+        
+        if ($books !== null) {
+            return $books;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    
     }
     public static function findBook($id)
     {

@@ -14,6 +14,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\User;
 use common\models\Books;
+use common\models\Genre;
 
 
 
@@ -76,12 +77,14 @@ class SiteController extends Controller
              $id = Yii::$app->user->getId();
              $model = User::findUser($id);
              $books = Books::findBooks($id);
+             $genre = Genre::find()->all();
+
 
 
               $this->layout='bookworm';
             return $this->render('/bookshelf/dashboard', [
                 'model' => $model,
-                'books' => $books,
+                'genre' => $genre,
         ]);     
 
         }

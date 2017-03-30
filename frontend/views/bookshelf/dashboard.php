@@ -21,8 +21,23 @@ use yii\helpers\Html;
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                         <h4>New on the shelf</h4>
-                       
+                         <div class="row">
                          
+                            <?php
+                                $latest = Books::findLatestbook();
+
+                                foreach($latest as $item){?>
+                                     <div class="col-sm-3">
+                                     <a class="thumbnail" href="#">
+                                                <img title="<?php echo $item->title?>" height="100" width="100" src="<?php echo $item->cover_photo?>"
+                                                value="<?= Url::to(['bookshelf/managebook','id' => $item->book_number]) ?>">
+                                                  
+                                               
+                                                </a>
+                                     </div>
+                               <?php }?>
+                           
+                        </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -42,9 +57,7 @@ use yii\helpers\Html;
                         <i class="glyphicon glyphicon-folder-open "></i>   Browse <br>
                           <ul class="list list-unstyled">
                           <?php
-                                $genre= Genre::find()->all();
-                            
-
+                             
                                 foreach($genre as $genre_name) {?>
                                  
                                 <li>

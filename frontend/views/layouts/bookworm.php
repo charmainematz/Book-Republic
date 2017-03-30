@@ -284,34 +284,26 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
 
 
          <div class="row">
-            <div class="col-md-3">
-               
-             <a href="<?= Url::to(['bookshelf/index','id'=>$user->id])?>">
-                <img src="../images/banner.png" class=" pull-left" /></a>
-                </br></br>
-             <p>&copy;  <?= date('Y') ?> All rights reserved</p>
-                <p></p>
-               
-            </div>
-            <div class="col-md-4">
-                <h5>Browse by genre</h5>
-                 <div class="col">
-                    <ul class="list-inline" >
-                        <li><a href="#">Art</a></li>
-                        <li><a href="#">Biography</a></li>
-                        <li><a href="#">Chicklit</a></li>
-                        <li><a href="#">Classic</a></li>
-                        <li><a href="#">Fiction</a></li>
-                        <li><a href="#">Nonfiction</a></li>
-                        <li><a href="#">Fiction</a></li>
-                        <li><a href="#">Nonfiction</a></li>
-                        <li><a href="#">Fiction</a></li>
-                        <li><a href="#">Nonfiction</a></li>
-                       
-                        <li><a href="#">More...</a></li>
-                    </ul>
+              <div class="col-md-4 pull-left ">
+                <h5>Follow Us</h5>
+                <ul >
+                     <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+                   <a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
+                    
+                </ul>
                 </div>
-            </div>
+            
+                <div class="col-md-4" align="center">
+               
+                 <a align="center" href="<?= Url::to(['bookshelf/index','id'=>$user->id])?>">
+                    <img src="../images/banner.png"  /></a>
+                    </br>
+                 <p>&copy;  <?= date('Y') ?> All rights reserved</p>
+                    <p></p>
+               
+                </div>
+            
+         
             <div class="col-md-4 pull-right ">
                 <h5>Follow Us</h5>
                 <ul >

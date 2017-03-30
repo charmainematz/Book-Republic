@@ -26,10 +26,10 @@ class BookshelfController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','admin','addbook','logout','mybookshelf','managebook','updatebook'],
+                'only' => ['index','admin','addbook','logout','mybookshelf','managebook','updatebook','dashboard'],
                 'rules' => [
                     [
-                        'actions' => ['index','addbook','logout','mybookshelf','managebook','updatebook'],
+                        'actions' => ['index','addbook','logout','mybookshelf','managebook','updatebook','dashboard'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -94,9 +94,12 @@ class BookshelfController extends Controller
        
        
         $books = Books::findBooks($id);
+        $genre = Genre::find()->all();
+
         $this->layout='bookworm';
         return $this->render('dashboard', [
                 'books' => $books,
+                'genre' => $genre,
         ]);
            
               
