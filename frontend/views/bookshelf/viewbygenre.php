@@ -3,10 +3,10 @@ use kartik\tabs\TabsX;
 use yii\helpers\Url;
 ?>
 
-<div id="page-wrapper">
+
            
 <section style="height:20px;"></section>
-
+    
     <div class="row " >
                                       
         <?php foreach($books as $book) {?>
@@ -23,5 +23,4 @@ use yii\helpers\Url;
         <?php } ?>
     </div>                                                       
       
-</div>
  <!-- /#page-wrapper -->

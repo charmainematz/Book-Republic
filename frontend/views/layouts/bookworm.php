@@ -277,41 +277,27 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
 <?php $this->endBody() ?>
-<footer class="footer" style="margin-bottom: 0; background-color: #10171D; color:#cfd0d1" >
+<footer class="footer" style="margin-bottom: 0; background-color: #10171D; color: gray" >
 
     <div class="container">
             <section style="height:50px;"></section>
 
 
          <div class="row">
-              <div class="col-md-4 pull-left ">
-                <h5>Follow Us</h5>
-                <ul >
-                     <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-                   <a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
-                    
-                </ul>
-                </div>
+              
             
-                <div class="col-md-4" align="center">
+                <div class="col-12" align="center">
                
                  <a align="center" href="<?= Url::to(['bookshelf/index','id'=>$user->id])?>">
                     <img src="../images/banner.png"  /></a>
                     </br>
-                 <p>&copy;  <?= date('Y') ?> All rights reserved</p>
+                 <p color="GRAY">&copy;  <?= date('Y') ?> All rights reserved</p>
                     <p></p>
                
                 </div>
             
          
-            <div class="col-md-4 pull-right ">
-                <h5>Follow Us</h5>
-                <ul >
-                     <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-                   <a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
-                    
-                </ul>
-            </div>
+         
             
         </div>
     </div>

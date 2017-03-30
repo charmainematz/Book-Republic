@@ -165,17 +165,22 @@ class BookshelfController extends Controller
 
      public function actionBrowsebooksbygenre($id)
     {
-       
-       
         $books = Books::findBooksbygenre($id);
-        
-        return $this->renderPartial('viewbygenre', [
-                
+        $genre = Genre::find()->all();
+
+        if (Yii::$app->request->isPjax) {
+            return $this->renderPartial('viewbygenre',[
                 'books' => $books,
-        ]);
-        
-        
+            ]);
+        } else {
+            $this->layout='bookworm';
+            return $this->render('dashboard', [
+                    'books' => $books,
+                    'genre' => $genre,
+            ]);
+        }
     }
+    
    
 
     public function actionDeletebook($id)
