@@ -73,12 +73,13 @@ class SiteController extends Controller
     public function actionIndex()
     {
        
-        if (!Yii::$app->user->isGuest) {
-             $id = Yii::$app->user->getId();
-             $model = User::findUser($id);
-             $books = Books::findBooks($id);
+
              $genre = Genre::find()->all();
 
+        if (!Yii::$app->user->isGuest) {
+             $id = Yii::$app->user->getId();
+            $model = User::findUser($id);
+             $books = Books::findBooks($id);
 
 
               $this->layout='bookworm';
@@ -103,8 +104,8 @@ class SiteController extends Controller
                    $this->layout='bookworm';
                 
                 return $this->render('/bookshelf/dashboard', [
-                'model' => $model,
-                'books' => $books,
+                     'model' => $model,
+                    'genre' => $genre,
                 ]);       
                  
             } 
@@ -116,8 +117,8 @@ class SiteController extends Controller
                     $books = Books::findBooks($id);
                            $this->layout='bookworm';
                         return $this->render('/bookshelf/dashboard', [
-                        'model' => $model,
-                        'books' => $books,
+                         'model' => $model,
+                         'genre' => $genre,
                         ]);   
                     }
                 }

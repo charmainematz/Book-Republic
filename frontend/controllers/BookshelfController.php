@@ -119,13 +119,42 @@ class BookshelfController extends Controller
                     'model' => $book,
                 ]);
             }
-                if(isset($_POST['delete']))
+            if(isset($_POST['delete']))
             {
                 $book->delete();
             }   
         
             else{
                 return $this->renderAjax('managebook', [
+                        'model' => $book,
+                ]);
+
+            }
+        
+              
+    }
+     public function actionTradebook($id)
+    {
+       
+       
+        $book = Books::findBook($id);
+
+        
+
+            if(isset($_POST['swap']))
+            {
+                $this->layout="bookworm";
+                return $this->render('updatebook', [
+                    'model' => $book,
+                ]);
+            }
+            if(isset($_POST['borrow']))
+            {
+                $book->delete();
+            }   
+        
+            else{
+                return $this->renderAjax('tradebook', [
                         'model' => $book,
                 ]);
 

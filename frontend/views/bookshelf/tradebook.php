@@ -5,7 +5,9 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 use common\models\Books;
-?>
+use common\models\User;
+$user=User::findIdentity(Yii::$app->user->getId());?>
+
 
 
 
@@ -28,6 +30,7 @@ use common\models\Books;
                     <strong>Description:</strong> <?php echo $model->description ?><br/> 
                     <strong>Rating:</strong> <?php echo $model->rating ?><br/> 
                     <strong>Condition:</strong> <?php echo $model->condition ?><br/> 
+                    <strong>Owner:</strong> <?php echo $model->owner ?><br/> 
                     </div>  
 
                     
@@ -35,15 +38,16 @@ use common\models\Books;
         </div> 
        
         <div class="row" align="center">
-                 
+            
+               <?php if ($user->username!=$model->owner) { ?>
+        
 
-               
-                    <?php $form = ActiveForm::begin(['action' =>['bookshelf/managebook','id'=>$model->book_number], 'method' => 'post']) ?>
-                    <?= Html::submitButton('Update',['class'=>'btn btn-outline btn-primary',"title"=>'Update book',"name"=>"update","value"=>"update"])?>
+                    <?php $form = ActiveForm::begin(['action' =>['bookshelf/tradebook','id'=>$model->book_number], 'method' => 'post']) ?>
+                    <?= Html::submitButton('Swap',['class'=>'btn btn-outline btn-primary',"title"=>'Swap book',"name"=>"swap","value"=>"swap"])?>
                            
-                    <?= Html::submitButton('Delete',['class'=>'btn btn-outline btn-danger', 'id'=>'Modal_deleteBook',"name"=>"delete", "value"=>"delete", "data-confirm"=>"Are you sure you want to delete this book?"]) ?>
+                    <?= Html::submitButton('Borrow',['class'=>'btn btn-outline btn-danger',"name"=>"borrow", "value"=>"borrow"]) ?>
                     <?php ActiveForm::end(); ?>
-          
+            <?php }?>
 
                 
         </div>

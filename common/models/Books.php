@@ -117,7 +117,7 @@ class Books extends \yii\db\ActiveRecord
         
         $books = Books::find()
                 ->orderBy(['book_number' => SORT_DESC])
-                ->limit(4)
+                ->limit(5)
                 ->all();
         
         
@@ -135,5 +135,18 @@ class Books extends \yii\db\ActiveRecord
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    public static function getOwner($id)
+    {
+       $books = Books::find()
+                ->where(['book_number' => $id])
+                ->one();
+               
+        if ($books !== null) {
+            return $books;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+        
     }
 }

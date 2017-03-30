@@ -3,9 +3,15 @@ use yii\helpers\Url;
 use common\models\Genre;
 use common\models\Books;
 use yii\helpers\Html;
-?>
+use yii\bootstrap\Modal;
 
-
+    Modal::begin([
+            'id' => 'modal5',
+            'size' => 'modal-sm',
+        ]);
+    echo "<div id = 'modalContent5'></div>";
+    Modal::end();
+    ?>     
 <div id="page-wrapper">
            
     <section style="height:20px;"></section>
@@ -20,6 +26,8 @@ use yii\helpers\Html;
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+
+
                         <h4>New on the shelf</h4>
                          <div class="row">
                          
@@ -27,16 +35,21 @@ use yii\helpers\Html;
                                 $latest = Books::findLatestbook();
 
                                 foreach($latest as $item){?>
-                                     <div class="col-sm-3">
+                                     <div  class="col-sm-3">
+
+                                     
                                      <a class="thumbnail" href="#">
-                                                <img title="<?php echo $item->title?>" height="100" width="100" src="<?php echo $item->cover_photo?>"
-                                                value="<?= Url::to(['bookshelf/managebook','id' => $item->book_number]) ?>">
+                                                <img title="<?php echo $item->title?>" height="100" width="100" src="<?php echo $item->cover_photo?>"   class="tradebook"
+                                                value="<?= Url::to(['bookshelf/tradebook','id' => $item->book_number]) ?>">
                                                   
                                                
-                                                </a>
+                                    </a>
+
+                                    
                                      </div>
-                               <?php }?>
-                           
+                        <?php }?>
+
+                       
                         </div>
                         </div>
                         <!-- /.panel-body -->
@@ -69,6 +82,10 @@ use yii\helpers\Html;
                                 
                             <?php } ?>         
                           </ul>  
+
+
+
+
                         </div>
                         <!-- /.panel-body -->                  
                     </div>
