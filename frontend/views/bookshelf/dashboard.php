@@ -5,7 +5,7 @@ use common\models\Books;
 use yii\helpers\Html;
 use yii\bootstrap\Modal;
 use yii\widgets\Pjax;
-
+use yii\base\view;
     Modal::begin([
             'id' => 'modal5',
             'size' => 'modal-sm',
@@ -13,6 +13,8 @@ use yii\widgets\Pjax;
     echo "<div id = 'modalContent5'></div>";
     Modal::end();
     ?>     
+
+
 <div id="page-wrapper">
            
     <section style="height:20px;"></section>
@@ -21,23 +23,14 @@ use yii\widgets\Pjax;
     <div class="row">
         <div class="col-lg-9">            
               <!-- /.panel -->
-            <div class="panel panel-info">
+            <div style="height:90vh;" class="panel panel-info">
                 <div class="panel-heading">                          
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <h4>New on the shelf</h4>
-                    <div class="row">                        
-                        <?php
-                            $latest = Books::findLatestbook();
-
-                            foreach($latest as $item){?>
-                                <div  class="col-sm-3">                            
-                                    <a class="thumbnail" href="#">
-                                        <img title="<?php echo $item->title?>" height="100" width="100" src="<?php echo $item->cover_photo?>"   class="tradebook" value="<?= Url::to(['bookshelf/tradebook','id' => $item->book_number]) ?>">                                            
-                                    </a>
-                                </div>
-                        <?php }?> 
+                   
+                    <div class="row" id="new">                        
+                        <?php echo $this->render('viewnewbooks'); ?>
                     </div>
                 </div>
                 <!-- /.panel-body -->
@@ -62,24 +55,32 @@ use yii\widgets\Pjax;
                    
                     <!-- /.panel -->
             <div class=" panel panel-default">
-                <div class="panel-heading">                   
+                <div class="panel-heading">  
+                    Browse                 
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body"  style="width: 100%; height: 550px; overflow: scroll">
-                <i class="glyphicon glyphicon-folder-open "></i>   Browse <br>
+                <div class="panel-body"  style="width: 100%; height:300px; overflow: scroll">
+                <?php  Pjax::begin(['id'=>'new']); ?>                               
+                    <?= Html::a('New in the Shelf',Url::to(['bookshelf/displaynew'])) ?><br>
+                    <?= Html::a('Friend\'s Bookshelf' ,Url::to(['bookshelf/displaynew'])) ?>      
+                <?php Pjax::end(); ?>    
+                           
+                <hr>
+                <i class="glyphicon glyphicon-folder-open "></i> Genre<br>
                   <ul class="list list-unstyled">
                    
-                <?php  Pjax::begin(['id'=>'genrediv']);
               
-                        foreach($genre as $genre_name) {?>
+                <?php  Pjax::begin(['id'=>'new']); ?>
                          
+                     <?php   foreach($genre as $genre_name) {?>
+                        
                         <li>                         
-                             <?= Html::a(
+                            <?= Html::a(
                                  $genre_name->genre,
                                 Url::to(['bookshelf/browsebooksbygenre','id' =>$genre_name->genre_id])
                                 
                                 ) ?>
-                                 <?php echo  " (".Books::countbooksbygenre($genre_name->genre_id).")" ?>
+                            <?php echo  " (".Books::countbooksbygenre($genre_name->genre_id).")" ?>
                                                        
                         </li>
 
@@ -99,4 +100,3 @@ use yii\widgets\Pjax;
         </div>
     </div>        
 </div>
-      

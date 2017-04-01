@@ -1,14 +1,12 @@
 <?php 
-use kartik\tabs\TabsX;
+
 use yii\helpers\Url;
 ?>
-
-
-           
-<section style="height:20px;"></section>
     
     <div class="row " >
-                                      
+
+        <h4 align="center">Genre</h4>  
+        <hr>                             
         <?php foreach($books as $book) {?>
         
            <div class="col-sm-3">

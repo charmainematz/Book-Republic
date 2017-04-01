@@ -185,7 +185,7 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                          <li><a href="<?= Url::toRoute(['bookshelf/dashboard','id' => Yii::$app->user->getId()])?>"><i class="fa fa-user fa-fw"></i> Dashboard</a>
-                        <li><a href="<?= Url::toRoute(['account/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="<?= Url::toRoute(['account/settings','id' => Yii::$app->user->getId()])?>"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="<?= Url::toRoute(['site/logout'])?>"><i class="fa fa-sign-out fa-fw"></i> Logout 
@@ -226,9 +226,12 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
                                 
                             </div>       
                         </div>
-                        <li>
-                            <a href="<?= Url::toRoute(['admin/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-shield fa-fw"></i> Admin Panel</a>
-                        </li>
+                         <li>
+                            <a href="<?= Url::toRoute(['account/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-user fa-fw"></i> Profile</a>
+                           
+                            <!-- /.nav-second-level -->
+                        </li>   
+                       
                         <li class="active">
                             <a href="<?= Url::toRoute(['bookshelf/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-book fa-fw active"></i> My Bookshelf</a>
                         </li>
@@ -250,11 +253,10 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Activity Log</a>
                         </li>
-                        <li>
-                            <a href="<?= Url::toRoute(['account/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-wrench fa-fw"></i> Account Settings<span class="fa arrow"></span></a>
-                           
-                            <!-- /.nav-second-level -->
-                        </li>         
+                         <li>
+                            <a href="<?= Url::toRoute(['admin/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-shield fa-fw"></i> Admin Panel</a>
+                        </li>
+                             
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -276,6 +278,7 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+
 <?php $this->endBody() ?>
 <footer class="footer" style="margin-bottom: 0; background-color: #10171D; color: gray" >
 
@@ -301,6 +304,7 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
             
         </div>
     </div>
+
 </footer>
 </html>
 <?php $this->endPage() ?>

@@ -31,7 +31,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
                 Modal::end();
                 ?>
                
-                <div class="panel panel-info">    
+                <div style="height:100vh;" class="panel panel-info">    
 
                     <div class="panel-heading">
                     </div>
@@ -45,9 +45,11 @@ $user=User::findIdentity(Yii::$app->user->getId());
                             </li>
                             <li><a href="#messages" data-toggle="tab">Swap Requests</a>
                             </li>
-                          
+                            <li class="pull-right"><a href="#friends">Friends' Bookshelf  <i class="glyphicon glyphicon-log-out"></i></a>
+                            </li>
                             
                         </ul>
+
                         <!-- Tab panes -->
                         <div class="tab-content ">                           
                             <div class="tab-pane fade in active" id="mybookshelf" >
@@ -97,6 +99,19 @@ $user=User::findIdentity(Yii::$app->user->getId());
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
+
+
+                <div id="friends" class="panel panel-info">    
+
+                   
+                    <div class="panel-body" >
+
+                    <?php echo $this->render('viewnewbooks'); ?>
+
+                    <?php echo $this->render('viewnewbooks'); ?>
+
+                    </div>
+                 </div>
             </div>
              <div class="col-lg-4">
                

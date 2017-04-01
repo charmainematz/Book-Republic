@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Carousel;
 use yii\bootstrap\Modal;
+use common\models\Books;
 
 /* @var $this yii\web\View */
 
@@ -24,9 +25,10 @@ $this->title = 'Book Republic';
             Modal::end();
         ?>
 
-        <div class="row">
+        <div class="row-fluid">
             <section style="height:70px;"></section>
-             <div class="col-xs-12 col-sm-6 col-lg-8">
+             <div class="col-xs-12 col-sm-6 col-lg-8" align="center">
+
                     <?php
                          echo Carousel::widget([
 
@@ -38,8 +40,7 @@ $this->title = 'Book Republic';
                          ]);
                     ?>
              </div>
-
-            <div class="col-xs-6 col-lg-4 panel-body">
+              <div class="col-xs-6 col-lg-4 panel-body">
                    
                     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>  
                     
@@ -60,14 +61,22 @@ $this->title = 'Book Republic';
                 <?php ActiveForm::end(); ?>
             </div>
 
-        <div class="row">
-             <div class="col-xs-12 col-sm-6 col-lg-8">
-                    <h2>New Listing</h2>
+        </div>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+        <div class="row">
+        
+             <div class="col-xs-12 col-sm-6 col-lg-8">
+                    <h4>New Listing</h4>
+
+              <?php
+                            $latest = Books::findLatestbook();
+                            foreach($latest as $item){?>
+                                <div  class="col-sm-2">                            
+                                    <a class="thumbnail" href="#">
+                                        <img title="<?php echo $item->title?>" height="100" width="100" src="<?php echo $item->cover_photo?>"   class="tradebook" value="<?= Url::to(['bookshelf/tradebook','id' => $item->book_number]) ?>">                                            
+                                    </a>
+                                </div>
+                        <?php }?> 
              </div>
 
             <div class="col-xs-6 col-lg-4">

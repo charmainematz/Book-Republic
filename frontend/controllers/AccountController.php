@@ -24,7 +24,7 @@ class AccountController extends Controller
                 'only' => ['index'],
                 'rules' => [
                     [
-                        'actions' => ['index','update','view','changepassword'],
+                        'actions' => ['index','update','view','changepassword','settings'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -59,6 +59,15 @@ class AccountController extends Controller
        
         $this->layout= 'bookworm';
         return $this->render('index', [
+                'model' => $this->findModel1($id),
+                'model2' => $this->findModel2($id),
+        ]);
+    }
+    public function actionSettings($id)
+    {
+       
+        $this->layout= 'bookworm';
+        return $this->render('settings', [
                 'model' => $this->findModel1($id),
                 'model2' => $this->findModel2($id),
         ]);

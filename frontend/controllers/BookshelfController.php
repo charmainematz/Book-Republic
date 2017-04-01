@@ -26,10 +26,10 @@ class BookshelfController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','admin','addbook','logout','mybookshelf','managebook','updatebook','dashboard'],
+                'only' => ['index','admin','addbook','logout','mybookshelf','managebook','updatebook','dashboard','displaynew'],
                 'rules' => [
                     [
-                        'actions' => ['index','addbook','logout','mybookshelf','managebook','updatebook','dashboard'],
+                        'actions' => ['index','addbook','logout','mybookshelf','managebook','updatebook','dashboard','displaynew'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -162,20 +162,35 @@ class BookshelfController extends Controller
         
               
     }
+    public function actionDisplaynew()
+    {
+      
+        $genre = Genre::find()->all();
 
+        if (Yii::$app->request->isPjax) {
+          
+              return $this->renderPartial('viewnewbooks');
+        } else {
+            $this->layout='bookworm';
+            return $this->render('dashboard', [
+                    
+                    'genre' => $genre,
+            ]);
+        }
+    }
+    
      public function actionBrowsebooksbygenre($id)
     {
         $books = Books::findBooksbygenre($id);
         $genre = Genre::find()->all();
 
         if (Yii::$app->request->isPjax) {
-            return $this->renderPartial('viewbygenre',[
-                'books' => $books,
-            ]);
+          
+              return $this->renderPartial('viewbygenre', ['books' => $books]);
         } else {
             $this->layout='bookworm';
             return $this->render('dashboard', [
-                    'books' => $books,
+                   
                     'genre' => $genre,
             ]);
         }

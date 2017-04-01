@@ -14,7 +14,7 @@ $this->title = 'Book Republic';
                 <div class="panel-body">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#edit" data-toggle="tab">Profile</a>
+                        <li class="active"><a href="#edit" data-toggle="tab">Edit Profile</a>
                         </li>
                          
                         <li><a href="#changepassword" data-toggle="tab">Change Password</a>

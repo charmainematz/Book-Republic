@@ -67,15 +67,33 @@ $user=User::findIdentity(Yii::$app->user->getId());
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-         <p class="pull-left">&copy; Book Republic <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
-</body>
+<footer class="footer" style="margin-bottom: 0; background-color: #10171D; color: gray" >
+
+    <div class="container">
+            <section style="height:50px;"></section>
+
+
+         <div class="row">
+              
+            
+                <div class="col-12" align="center">
+               
+                 <a align="center" href="<?= Url::to(['site/index'])?>">
+                    <img src="../images/banner.png"  /></a>
+                    </br>
+                 <p color="GRAY">&copy;  <?= date('Y') ?> All rights reserved</p>
+                    <p></p>
+               
+                </div>
+            
+         
+         
+            
+        </div>
+    </div>
+</footer>
 </html>
 <?php $this->endPage() ?>
