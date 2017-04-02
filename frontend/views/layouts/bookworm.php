@@ -184,7 +184,7 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                         <li><a href="<?= Url::toRoute(['bookshelf/dashboard','id' => Yii::$app->user->getId()])?>"><i class="fa fa-user fa-fw"></i> Dashboard</a>
+                         <li><a href="<?= Url::toRoute(['bookshelf/dashboard','id' => Yii::$app->user->getId()])?>"><i class="fa fa-user fa-fw"></i> Dashboard</a></li>
                         <li><a href="<?= Url::toRoute(['account/settings','id' => Yii::$app->user->getId()])?>"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
@@ -248,11 +248,9 @@ $user=User::findIdentity(Yii::$app->user->getId());?>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-envelope fa-fw"></i> Messages</a>
+                            <a href="<?= Url::toRoute(['message/index'])?>"><i class="fa fa-envelope fa-fw"></i> Messages</a>
                         </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Activity Log</a>
-                        </li>
+                        <li><a href="<?= Url::toRoute(['bookshelf/dashboard','id' => Yii::$app->user->getId()])?>"><i class="fa fa-edit fa-fw"></i> Activity Log</a></li>
                          <li>
                             <a href="<?= Url::toRoute(['admin/index','id' => Yii::$app->user->getId()])?>"><i class="fa fa-shield fa-fw"></i> Admin Panel</a>
                         </li>

@@ -1,18 +1,31 @@
 <?php
 use yii\bootstrap\Modal;
+use yii\jui\Accordion;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use common\models\User;
 $this->title = 'Book Republic';
 $user=User::findIdentity(Yii::$app->user->getId());
 ?> <?php
-                Modal::begin([
-                        'id' => 'modal4',
-                        'size' => 'modal-sm',
-                    ]);
-                echo "<div id = 'modalContent4'></div>";
-                Modal::end();
-                ?>     
+        Modal::begin([
+                'id' => 'modal4',
+                'size' => 'modal-sm',
+                'header' => ' 
+                        <div class="dropdown open">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                            <i class="glyphicon glyphicon-menu-hamburger  "></i>                         
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                               <li><a role="menuitem" tabindex="-1" href="#"><i class="glyphicon glyphicon-book"></i>  Currently Reading</a></li>
+                               <li><a role="menuitem" tabindex="-1" href="#"><i class="glyphicon glyphicon-check"></i>  Have Read</a></li>
+                               <li><a role="menuitem" tabindex="-1" href="#"><i class="glyphicon glyphicon-list"></i>  To be Read</a></li>
+                               <li><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-heart"></i>  Favorite</a></li>
+                            </ul>
+                         </div>',
+            ]);
+        echo "<div id = 'modalContent4'></div>";
+        Modal::end();
+        ?>     
 
     <div id="page-wrapper" class="bookshelf">  
     <section style="height:10px;"></section>
@@ -26,6 +39,7 @@ $user=User::findIdentity(Yii::$app->user->getId());
                 Modal::begin([
                         'id' => 'modal2',
                         'size' => 'modal-sm',
+                        
                     ]);
                 echo "<div id = 'modalContent2'></div>";
                 Modal::end();
@@ -114,38 +128,69 @@ $user=User::findIdentity(Yii::$app->user->getId());
                  </div>
             </div>
              <div class="col-lg-4">
-               
-                    <!-- /.panel -->
-                   
-                    <div class="panel panel-DEFAULT">
-                    <div class="panel-heading">
-                         <ul class="list-inline">
-                       
-                        Reading List
-                        <li><button title="Currently Reading" type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-book"></i>
-                            </button></li> 
-                        <li> <button  title="Have Read"  type="button" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-check"></i>
-                            </button></li>             
-                        <li><button title="To be read" type="button" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-list"></i>
-                            </button></li>
-                         <li><button type="button" title="Favorites" class="btn btn-danger btn-circle"><i class="fa fa-heart"></i>
-                            </button> </li>
-                            
-                    </ul>
-                    </div>
-                       
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+
+                    <div id="accordion" class="panel-group">
+                         <div >
+                            <div >
+                                <p class="profile-usertitle-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><button type="button" title="Favorites" class="btn btn-danger btn-circle"><i class="fa fa-heart"></i>
+                        </button> Favorites</a>
+                                </p>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                   
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.panel-body -->
-                    
-                        <!-- /.panel-footer -->
-                    
-                    <!-- /.panel .chat-panel -->
-                      
-              
-                <!-- /.col-lg-4 -->
+                        <div >
+                            <div >
+                                <p class="profile-usertitle-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><button title="Currently Reading" type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-book"> </i>
+                                    </button> Currently Reading</a>
+                                </p>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p class="profile-usertitle-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><button  title="Have Read"  type="button" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-check"></i>
+                        </button> Have Read</a>
+                                </p>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse ">
+                                <div class="panel-body">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div >
+                            <div >
+                                <p class="profile-usertitle-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><button title="To be read" type="button" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-list"></i>
+                        </button> To be read</a>
+                                </p>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+   
+                    </div>
+                    <!-- /.panel-body -->
+                
+                    <!-- /.panel-footer -->
                 </div>
             </div>
             </div>

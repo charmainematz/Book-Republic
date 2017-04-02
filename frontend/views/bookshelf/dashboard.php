@@ -9,6 +9,7 @@ use yii\base\view;
     Modal::begin([
             'id' => 'modal5',
             'size' => 'modal-sm',
+            
         ]);
     echo "<div id = 'modalContent5'></div>";
     Modal::end();
@@ -54,43 +55,38 @@ use yii\base\view;
                    
                    
                     <!-- /.panel -->
-            <div class=" panel panel-default">
+            <div class=" panel panel-default" style="height:90vh; overflow: scroll;">
                 <div class="panel-heading">  
                     Browse                 
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body"  style="width: 100%; height:300px; overflow: scroll">
-                <?php  Pjax::begin(['id'=>'new']); ?>                               
-                    <?= Html::a('New in the Shelf',Url::to(['bookshelf/displaynew'])) ?><br>
-                    <?= Html::a('Friend\'s Bookshelf' ,Url::to(['bookshelf/displaynew'])) ?>      
-                <?php Pjax::end(); ?>    
-                           
-                <hr>
-                <i class="glyphicon glyphicon-folder-open "></i> Genre<br>
-                  <ul class="list list-unstyled">
-                   
-              
-                <?php  Pjax::begin(['id'=>'new']); ?>
-                         
-                     <?php   foreach($genre as $genre_name) {?>
-                        
-                        <li>                         
-                            <?= Html::a(
-                                 $genre_name->genre,
-                                Url::to(['bookshelf/browsebooksbygenre','id' =>$genre_name->genre_id])
-                                
-                                ) ?>
-                            <?php echo  " (".Books::countbooksbygenre($genre_name->genre_id).")" ?>
-                                                       
-                        </li>
-
-                        
-                <?php } Pjax::end(); ?>         
-                  </ul>  
-
-
-
-
+                <div class="panel-body"  >
+                    <?php  Pjax::begin(['id'=>'new']); ?>                               
+                        <?= Html::a('New in the Shelf',Url::to(['bookshelf/displaynew'])) ?><br>
+                        <?= Html::a('Friend\'s Bookshelf' ,Url::to(['bookshelf/displaynew'])) ?>      
+                    <?php Pjax::end(); ?>    
+                               
+                    <hr>
+                    <div >
+                        <i class="glyphicon glyphicon-folder-open "></i> Genre<br>
+                        <ul class="list list-unstyled">  
+                            <?php  Pjax::begin(['id'=>'new']); ?>
+                                     
+                                 <?php  foreach($genre as $genre_name) {?>
+                                    
+                                    <li>                         
+                                        <?= Html::a(
+                                             $genre_name->genre,
+                                            Url::to(['bookshelf/browsebooksbygenre','id' =>$genre_name->genre_id])
+                                            
+                                            ) ?>
+                                        <?php echo  " (".Books::countbooksbygenre($genre_name->genre_id).")" ?>
+                                                                   
+                                    </li>
+                                    
+                            <?php } Pjax::end(); ?>         
+                        </ul>  
+                    </div>
                 </div>
                 <!-- /.panel-body -->                  
             </div>

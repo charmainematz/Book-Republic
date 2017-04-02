@@ -9,11 +9,19 @@ use common\models\User;
 $user=User::findIdentity(Yii::$app->user->getId());?>
 
 
-
-
-  
                
         <div class="row">
+                <div class="dropdown  pull-right">
+                            <span class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                            <i class="glyphicon glyphicon-option-vertical"></i>                         
+                            </span>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                               <li><a tabindex="-1" href="<?= Url::toRoute(['bookshelf/addtolist','list_id'=>1,'book_number'=>$model->book_number])?>"><i class="glyphicon glyphicon-book"></i>  Currently Reading</a></li>
+                               <li><a tabindex="-1" href="<?= Url::toRoute(['bookshelf/addtolist','list_id'=>2,'book_number'=>$model->book_number])?>"><i class="glyphicon glyphicon-check"></i>  Have Read</a></li>
+                               <li><a  tabindex="-1" href="<?= Url::toRoute(['bookshelf/addtolist','list_id'=>3,'book_number'=>$model->book_number])?>"><i class="glyphicon glyphicon-list"></i>  To be Read</a></li>
+                               <li><a tabindex="-1" href="<?= Url::toRoute(['bookshelf/addtolist','list_id'=>4,'book_number'=>$model->book_number])?>"><i class="fa fa-heart"></i>  Favorite</a></li>
+                            </ul>
+                         </div>
                 <div class="col-4" align="center">
                     <span>
                   

@@ -14,6 +14,7 @@ use common\models\User;
 use common\models\Genre;
 use common\models\BooksSearch;
 use common\models\UserSearch;
+use common\models\ReadingList;
 
 
 /**
@@ -26,10 +27,10 @@ class BookshelfController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','admin','addbook','logout','mybookshelf','managebook','updatebook','dashboard','displaynew'],
+                'only' => ['index','admin','addbook','logout','mybookshelf','managebook','updatebook','dashboard','displaynew','addtolist'],
                 'rules' => [
                     [
-                        'actions' => ['index','addbook','logout','mybookshelf','managebook','updatebook','dashboard','displaynew'],
+                        'actions' => ['index','addbook','logout','mybookshelf','managebook','updatebook','dashboard','displaynew','addtolist'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -101,6 +102,26 @@ class BookshelfController extends Controller
                 'books' => $books,
                 'genre' => $genre,
         ]);
+           
+              
+    }
+    public function actionAddtolist($list_id,$book_number)
+    {
+        $request = Yii::$app->request;
+        $userid = Yii::$app->user->getId();
+        $readinglist = new ReadingList();
+        if ($request->isGet){
+                 $readinglist->user_id =  $userid;
+                 $readinglist->list_name = $list_id;
+                 $readinglist->book_number = $book_number;
+                 $readinglist->save();
+        }
+        $this->layout='bookworm';
+        return $this->render('dashboard', [
+                'books' => Books::findBooks($userid),
+                'genre' =>  Genre::find()->all(),
+        ]);
+        
            
               
     }

@@ -80,6 +80,13 @@ body {
   font-weight: 600;
   margin-bottom: 15px;
 }
+
+.menubarinline {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
 @media(max-width:768px) {
   #profile {
     display:none;
